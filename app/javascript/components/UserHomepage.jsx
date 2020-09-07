@@ -5,22 +5,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
-import NavBar from "./NavBar";
 
 export default () => (
   <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
     <div className="jumbotron jumbotron-fluid bg-transparent">
       <div className="container secondary-color">
       <div>
-        <NavBar />
+        <Profile />
       </div>
         <img
           src={logo}
           alt={'The Book of Cook'}
         />
-        <p className="lead">
-          The virtual cookbook and recipe organizer.
-        </p>
         <hr className="my-4" />
         <Link
           to="/recipes"
@@ -29,7 +25,6 @@ export default () => (
         >
           View Recipes
         </Link>
-        <LoginButton />
         <LogoutButton />
       </div>
     </div>
