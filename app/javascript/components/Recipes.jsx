@@ -5,7 +5,6 @@ export default function Recipes(props) {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    console.log('component mounted!')
     fetchRecipes(recipes)
   },[])
 

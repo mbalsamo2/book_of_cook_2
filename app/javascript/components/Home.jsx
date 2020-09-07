@@ -1,13 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from './../../../public/the-book-of-cook.png';
+import logo from '../../assets/images/logo.png';
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import Profile from "./Profile";
 
 export default () => (
   <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
     <div className="jumbotron jumbotron-fluid bg-transparent">
       <div className="container secondary-color">
+      <div>
+        <Profile />
+      </div>
         <img
-          src={require(`./${logo}`)}
+          src={logo}
           alt={'The Book of Cook'}
         />
         <p className="lead">
@@ -21,6 +28,8 @@ export default () => (
         >
           View Recipes
         </Link>
+        <LoginButton />
+        <LogoutButton />
       </div>
     </div>
   </div>
