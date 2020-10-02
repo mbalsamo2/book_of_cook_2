@@ -24,12 +24,19 @@ export default () => (
       <Link
         to="/recipes"
         className="btn btn-lg custom-button"
-        role="button"
-      >
+        role="button">
         View Recipes
       </Link>
       <LoginButton />
       <LogoutButton />
+      <Link
+        to='/login'>
+        LOG IN!!
+      </Link>
+      <Link
+        to='/signup'>
+        sign up!
+      </Link>
     </div>
   </div>
 );
