@@ -1,42 +1,61 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../../assets/images/logo.png';
-import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
-import Profile from "./Profile";
 import NavigationBar from "./NavigationBar";
+import axios from 'axios'
 
-export default () => (
-  <div className="primary-color align-items-center">
-    <div className="container secondary-color">
-    <div>
-      <NavigationBar />
+const Home = (props) => {
+
+  const handleClick = () => {
+    axios.delete('http://localhost:3001/logout', {withCredentials: true})
+     .then(response => {
+       props.handleLogout()
+       props.history.push('/')
+     })
+     .catch(error => console.log(error))
+  }
+
+  return (
+    <div className="primary-color align-items-center">
+      <div className="container secondary-color">
+      <div>
+        <NavigationBar />
+      </div>
+        <img
+          src={logo}
+          alt={'The Book of Cook'}
+        />
+        <p className="lead">
+          The virtual cookbook and recipe organizer.
+        </p>
+        <hr className="my-4" />
+        <Link
+          to="/recipes"
+          className="btn btn-lg custom-button"
+          role="button">
+          View Recipes
+        </Link>
+        <Link
+          to='/login'
+          className="btn btn-lg custom-button"
+          role="button">
+          LOG IN!!
+        </Link>
+        <Link
+          to='/signup'
+          className="btn btn-lg custom-button"
+          role="button">
+          SIGN UP!
+        </Link>
+        <br></br>
+        {
+          props.loggedInStatus ?
+          <Link to='/logout' onClick={handleClick}>Log Out</Link> :
+          null
+        }
+      </div>
     </div>
-      <img
-        src={logo}
-        alt={'The Book of Cook'}
-      />
-      <p className="lead">
-        The virtual cookbook and recipe organizer.
-      </p>
-      <hr className="my-4" />
-      <Link
-        to="/recipes"
-        className="btn btn-lg custom-button"
-        role="button">
-        View Recipes
-      </Link>
-      <LoginButton />
-      <LogoutButton />
-      <Link
-        to='/login'>
-        LOG IN!!
-      </Link>
-      <Link
-        to='/signup'>
-        sign up!
-      </Link>
-    </div>
-  </div>
-);
+  );
+};
+
+export default Home;
