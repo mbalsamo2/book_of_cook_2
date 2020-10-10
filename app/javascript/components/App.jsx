@@ -7,6 +7,7 @@ import Recipe from "../components/Recipe";
 import NewRecipe from "../components/NewRecipe";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import User from "../components/User";
 
 class App extends Component {
   constructor(props) {
@@ -73,6 +74,7 @@ class App extends Component {
             <Route path="/recipes" exact component={Recipes} />
             <Route path="/recipe/:id" exact component={Recipe} />
             <Route path="/recipe" exact component={NewRecipe} />
+            <Route path="/users/:id" exact component={User} />
           </Switch>
         </BrowserRouter>
       </div>

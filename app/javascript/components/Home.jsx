@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo_2.png';
 import NavigationBar from "./NavigationBar";
 import axios from 'axios'
 
@@ -18,9 +18,6 @@ const Home = (props) => {
   return (
     <div className="primary-color align-items-center">
       <div className="container secondary-color">
-      <div>
-        <NavigationBar />
-      </div>
         <img
           src={logo}
           alt={'The Book of Cook'}
