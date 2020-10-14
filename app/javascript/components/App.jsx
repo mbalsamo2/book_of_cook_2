@@ -74,7 +74,12 @@ class App extends Component {
             <Route path="/recipes" exact component={Recipes} />
             <Route path="/recipe/:id" exact component={Recipe} />
             <Route path="/recipe" exact component={NewRecipe} />
-            <Route path="/users/:id" exact component={User} />
+            <Route
+              exact path="/users/:id"
+              render={props => (
+                <User {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn} />
+              )}
+            />
           </Switch>
         </BrowserRouter>
       </div>

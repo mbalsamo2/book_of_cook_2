@@ -14,7 +14,6 @@ export default function Recipe(props) {
         params: { id }
       }
     } = props;
-
     const url = `/api/v1/show/${id}`;
 
     fetch(url)
