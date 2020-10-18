@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import NavigationBar from "./NavigationBar";
 
 export default function Recipe(props) {
   const [recipe, setRecipe] = useState({});

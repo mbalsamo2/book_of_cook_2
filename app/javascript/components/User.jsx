@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
+import Recipes from "../components/Recipes";
 
 export default function User(props) {
   const [user, setUser] = useState({});
@@ -22,7 +23,7 @@ export default function User(props) {
       throw new Error("Network response was not ok.");
     })
     .then(response => setUser(response))
-    .catch(() => props.history.push(`/users/${id}`));
+    .catch(() => props.history.push(`/api/v1/recipes/index`));
   }
 
   useEffect( () => {
@@ -33,6 +34,7 @@ export default function User(props) {
   return (
     <div>
       <NavigationBar user={user}/>
+      <Recipes />
       <p>
         WE MADE IT!
       </p>
