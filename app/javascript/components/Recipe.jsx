@@ -79,6 +79,7 @@ export default function Recipe(props) {
 
   return (
     <div className="">
+      <NavigationBar user={props.user}/>
       <div className="hero position-relative d-flex align-items-center justify-content-center">
         <img
           src={recipe.image}

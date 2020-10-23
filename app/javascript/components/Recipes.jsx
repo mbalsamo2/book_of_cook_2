@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import NavigationBar from "./NavigationBar";
 
 export default function Recipes(props) {
   const [recipes, setRecipes] = useState([]);
@@ -48,6 +49,7 @@ export default function Recipes(props) {
 
   return (
     <>
+      <NavigationBar user={props.user}/>
       <section className="jumbotron jumbotron-fluid text-center">
         <div className="container py-5">
           <h1 className="display-4">Recipes for every occasion</h1>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import NavigationBar from "./NavigationBar";
 
 export default function NewRecipe(props) {
 
@@ -60,6 +61,7 @@ export default function NewRecipe(props) {
 
   return (
     <div className="container mt-5">
+      <NavigationBar user={props.user}/>
       <div className="row">
         <div className="col-sm-12 col-lg-6 offset-lg-3">
           <h1 className="font-weight-normal mb-5">

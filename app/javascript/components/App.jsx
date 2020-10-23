@@ -56,28 +56,71 @@ class App extends Component {
             <Route
               exact path='/'
               render={props => (
-              <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
+                <Home {...props}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
               )}
             />
             <Route
               exact path='/login'
               render={props => (
-              <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+                <Login {...props}
+                  handleLogin={this.handleLogin}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
               )}
             />
             <Route
               exact path='/signup'
               render={props => (
-              <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+                <Signup {...props}
+                  handleLogin={this.handleLogin}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
               )}
             />
-            <Route path="/recipes" exact component={Recipes} />
-            <Route path="/recipe/:id" exact component={Recipe} />
-            <Route path="/recipe" exact component={NewRecipe} />
+            <Route
+              path="/recipes" exact
+              render={props => (
+                <Recipes {...props}
+                  handleLogin={this.handleLogin}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              path="/recipe/:id" exact
+              render={props => (
+                <Recipe {...props}
+                  handleLogin={this.handleLogin}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              path="/recipe" exact
+              render={props => (
+                <NewRecipe {...props}
+                  handleLogin={this.handleLogin}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route
               exact path="/users/:id"
               render={props => (
-                <User {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn} />
+                <User {...props}
+                  handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
               )}
             />
           </Switch>
