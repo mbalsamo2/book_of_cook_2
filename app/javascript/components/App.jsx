@@ -5,6 +5,7 @@ import Home from "../components/Home";
 import Recipes from "../components/Recipes";
 import Recipe from "../components/Recipe";
 import NewRecipe from "../components/NewRecipe";
+import PublicRecipes from "../components/PublicRecipes";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import User from "../components/User";
@@ -118,6 +119,16 @@ class App extends Component {
               render={props => (
                 <User {...props}
                   handleLogout={this.handleLogout}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              path="/public_recipes" exact
+              render={props => (
+                <PublicRecipes {...props}
+                  handleLogin={this.handleLogin}
                   loggedInStatus={this.state.isLoggedIn}
                   user={this.state.user}
                 />

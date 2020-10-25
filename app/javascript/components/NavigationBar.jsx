@@ -1,6 +1,9 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import logo from '../../assets/images/logo_2.png';
+import Recipes from "../components/Recipes";
+import PublicRecipes from "../components/PublicRecipes";
+import { Link } from "react-router-dom";
 
 export default function NavigationBar(props) {
 
@@ -14,16 +17,39 @@ export default function NavigationBar(props) {
             alt={'The Book of Cook'}
           />
         </Navbar.Brand>
+        { props.user &&
+          <Nav className="mr-auto">
+            Hello, {props.user.username}!
+          </Nav>
+        }
+        { props.user &&
+          <Nav className="mr-auto">
+            <Link to="/recipes">
+              Your Cookbook
+            </Link>
+          </Nav>
+        }
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
+          <Link to="/public_recipes">
+            Public Cookbook
+          </Link>
         </Nav>
-        <NavDropdown title="" style={{"paddingRight":"10rem"}}>
-          <NavDropdown.Item href="#home">Hello, {props.user.username}!</NavDropdown.Item>
-          <NavDropdown.Item href="#home">Your Cookbook</NavDropdown.Item>
-          <NavDropdown.Item href="#home">Public Cookbook</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
-        </NavDropdown>
+        { props.user &&
+          <Nav className="mr-auto">
+            <Link to="/logout">
+              Logout
+            </Link>
+          </Nav>
+        }
+        { !props.user &&
+          <div>
+            <Nav className="mr-auto">
+              <Link to="/login">
+                Login
+              </Link>
+            </Nav>
+          </div>
+        }
       </Navbar>
     </div>
   );

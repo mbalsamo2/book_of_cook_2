@@ -28,7 +28,7 @@ class Api::V1::RecipesController < ApplicationController
     render json: { message: 'Recipe deleted!' }
   end
 
-  def public_book_book
+  def public_recipes
     recipes = Recipe.all.order(created_at: :desc)
     render json: recipes
   end
