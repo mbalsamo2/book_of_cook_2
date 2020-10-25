@@ -46,7 +46,6 @@ class Login extends Component {
 
   redirect = (response) => {
     let id = response.data.user.id
-    // this.props.history.push(`/users/${id}`)
     this.props.history.push(`/recipes`)
   }
 

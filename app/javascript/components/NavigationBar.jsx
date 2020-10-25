@@ -6,23 +6,27 @@ import PublicRecipes from "../components/PublicRecipes";
 import { Link } from "react-router-dom";
 
 export default function NavigationBar(props) {
-
   return (
     <div>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             style={{"height":"4rem"}}
             src={logo}
             alt={'The Book of Cook'}
           />
         </Navbar.Brand>
-        { props.user &&
+        { (Object.keys(props.user).length !== 0) &&
           <Nav className="mr-auto">
             Hello, {props.user.username}!
           </Nav>
         }
-        { props.user &&
+        { (Object.keys(props.user).length === 0) &&
+          <Nav className="mr-auto">
+            Hello, future chef!
+          </Nav>
+        }
+        { (Object.keys(props.user).length !== 0) &&
           <Nav className="mr-auto">
             <Link to="/recipes">
               Your Cookbook
@@ -34,21 +38,19 @@ export default function NavigationBar(props) {
             Public Cookbook
           </Link>
         </Nav>
-        { props.user &&
+        { (Object.keys(props.user).length !== 0) &&
           <Nav className="mr-auto">
             <Link to="/logout">
               Logout
             </Link>
           </Nav>
         }
-        { !props.user &&
-          <div>
-            <Nav className="mr-auto">
-              <Link to="/login">
-                Login
-              </Link>
-            </Nav>
-          </div>
+        { (Object.keys(props.user).length === 0) &&
+          <Nav className="mr-auto">
+            <Link to="/login">
+              Login
+            </Link>
+          </Nav>
         }
       </Navbar>
     </div>

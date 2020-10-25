@@ -7,6 +7,7 @@ import Recipe from "../components/Recipe";
 import NewRecipe from "../components/NewRecipe";
 import PublicRecipes from "../components/PublicRecipes";
 import Login from "../components/Login";
+import Logout from "../components/Logout";
 import Signup from "../components/Signup";
 import User from "../components/User";
 
@@ -129,6 +130,16 @@ class App extends Component {
               render={props => (
                 <PublicRecipes {...props}
                   handleLogin={this.handleLogin}
+                  loggedInStatus={this.state.isLoggedIn}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              path="/logout" exact
+              render={props => (
+                <Logout {...props}
+                  handleLogout={this.handleLogout}
                   loggedInStatus={this.state.isLoggedIn}
                   user={this.state.user}
                 />

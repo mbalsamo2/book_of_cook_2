@@ -27,10 +27,10 @@ const Home = (props) => {
         </p>
         <hr className="my-4" />
         <Link
-          to="/recipes"
+          to="/public_recipes"
           className="btn btn-lg custom-button"
           role="button">
-          View Recipes
+          View Public Recipes
         </Link>
         <Link
           to='/login'
