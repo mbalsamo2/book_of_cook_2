@@ -29,7 +29,7 @@ class Signup extends Component {
       password: password,
       password_confirmation: password_confirmation
     }
-    axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
+    axios.post('http://localhost:3001/api/v1/users/users/create', {user}, {withCredentials: true})
       .then(response => {
         if (response.data.status === 'created') {
           this.props.handleLogin(response.data)
@@ -44,7 +44,7 @@ class Signup extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/')
+    this.props.history.push('/recipes')
   }
 
   handleErrors = () => {

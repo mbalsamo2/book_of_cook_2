@@ -33,7 +33,11 @@ export default function User(props) {
 
   return (
     <div>
-      <NavigationBar user={user}/>
+      <NavigationBar
+        user={props.user}
+        loggedInStatus={props.loggedInStatus}
+        handleLogout={props.handleLogout}
+      />
       <Recipes />
       <p>
         WE MADE IT!

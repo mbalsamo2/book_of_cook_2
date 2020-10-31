@@ -4,8 +4,19 @@ import logo from '../../assets/images/logo_2.png';
 import Recipes from "../components/Recipes";
 import PublicRecipes from "../components/PublicRecipes";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 
 export default function NavigationBar(props) {
+
+  const handleClick = () => {
+    axios.delete('http://localhost:3001/logout', {withCredentials: true})
+     .then(response => {
+       props.handleLogout()
+       window.location.replace('/')
+     })
+     .catch(error => console.log(error));
+  }
+
   return (
     <div>
       <Navbar bg="light" variant="light">
@@ -16,12 +27,14 @@ export default function NavigationBar(props) {
             alt={'The Book of Cook'}
           />
         </Navbar.Brand>
-        { (Object.keys(props.user).length !== 0) &&
+        { props.loggedInStatus &&
+          (Object.keys(props.user).length !== 0) &&
           <Nav className="mr-auto">
-            Hello, {props.user.username}!
+            Hello, Chef {props.user.username}!
           </Nav>
         }
-        { (Object.keys(props.user).length === 0) &&
+        { !props.loggedInStatus &&
+          (Object.keys(props.user).length === 0) &&
           <Nav className="mr-auto">
             Hello, future chef!
           </Nav>
@@ -38,14 +51,13 @@ export default function NavigationBar(props) {
             Public Cookbook
           </Link>
         </Nav>
-        { (Object.keys(props.user).length !== 0) &&
-          <Nav className="mr-auto">
-            <Link to="/logout">
-              Logout
-            </Link>
-          </Nav>
+        {
+          props.loggedInStatus &&
+          (Object.keys(props.user).length !== 0) &&
+          <Link to='/logout' onClick={handleClick}>Log Out!</Link>
         }
-        { (Object.keys(props.user).length === 0) &&
+        { !props.loggedInStatus &&
+          (Object.keys(props.user).length === 0) &&
           <Nav className="mr-auto">
             <Link to="/login">
               Login

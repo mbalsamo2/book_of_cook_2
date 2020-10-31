@@ -45,11 +45,6 @@ const Home = (props) => {
           SIGN UP!
         </Link>
         <br></br>
-        {
-          props.loggedInStatus ?
-          <Link to='/logout' onClick={handleClick}>Log Out</Link> :
-          null
-        }
       </div>
     </div>
   );

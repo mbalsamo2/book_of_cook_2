@@ -61,7 +61,11 @@ export default function NewRecipe(props) {
 
   return (
     <div className="container mt-5">
-      <NavigationBar user={props.user}/>
+      <NavigationBar
+        user={props.user}
+        loggedInStatus={props.loggedInStatus}
+        handleLogout={props.handleLogout}
+      />
       <div className="row">
         <div className="col-sm-12 col-lg-6 offset-lg-3">
           <h1 className="font-weight-normal mb-5">

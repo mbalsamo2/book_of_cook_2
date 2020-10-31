@@ -49,7 +49,11 @@ export default function PublicRecipes(props) {
 
   return (
     <>
-      <NavigationBar user={props.user}/>
+      <NavigationBar
+        user={props.user}
+        loggedInStatus={props.loggedInStatus}
+        handleLogout={props.handleLogout}
+      />
       <section className="jumbotron jumbotron-fluid text-center">
         <div className="container py-5">
           <h1 className="display-4">Recipes for every occasion</h1>

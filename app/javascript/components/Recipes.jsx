@@ -49,7 +49,11 @@ export default function Recipes(props) {
 
   return (
     <>
-      <NavigationBar user={props.user}/>
+      <NavigationBar
+        user={props.user}
+        loggedInStatus={props.loggedInStatus}
+        handleLogout={props.handleLogout}
+      />
       <section className="jumbotron jumbotron-fluid text-center">
         <div className="container py-5">
           <h1 className="display-4">Recipes for every occasion</h1>
@@ -60,21 +64,27 @@ export default function Recipes(props) {
           </p>
         </div>
       </section>
-      <div className="py-5">
-        <main className="container">
-          <div className="text-right mb-3">
-            <Link to="/recipe" className="btn custom-button">
-              Create New Recipe
-            </Link>
-          </div>
-          <div className="row">
-            {recipes.length > 0 ? allRecipes : noRecipe}
-          </div>
-          <Link to="/" className="btn btn-link">
-            Home
-          </Link>
-        </main>
-      </div>
+      { props.loggedInStatus &&
+        <div className="py-5">
+          <main className="container">
+            <div className="text-right mb-3">
+              <Link to="/recipe" className="btn custom-button">
+                Create New Recipe
+              </Link>
+            </div>
+            <div className="row">
+              {recipes.length > 0 ? allRecipes : noRecipe}
+            </div>
+          </main>
+        </div>
+      }
+      { !props.loggedInStatus &&
+        <div>
+          <p>
+            Please login to view your personal recipes.
+          </p>
+        </div>
+      }
     </>
   );
 }
