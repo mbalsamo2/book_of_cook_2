@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from "../components/Home";
@@ -10,141 +10,128 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import User from "../components/User";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedIn: false,
-      user: {}
-     };
-  }
+export default function App(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
-  componentDidMount() {
-      this.loginStatus()
-    }
+  useEffect( () => {
+    loginStatus();
+  }, [])
 
-  loginStatus = () => {
+  const loginStatus = () => {
     axios.get('http://localhost:3001/logged_in', {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
-        this.handleLogin(response)
+        handleLogin(response)
       } else {
-        this.handleLogout()
+        handleLogout()
       }
     })
     .catch(error => console.log('api errors:', error))
   }
 
-  handleLogin = (data) => {
-    this.setState({
-      isLoggedIn: true,
-      user: data.user
-    })
+  const handleLogin = (data) => {
+    setIsLoggedIn(true);
+    setUser(data.user)
   }
 
-  handleLogout = () => {
-    this.setState({
-    isLoggedIn: false,
-    user: {}
-    })
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser({});
   }
 
-  render() {
-    return (
-      <div>
-        <BrowserRouter>
-          <Switch>
-            <Route
-              exact path='/'
-              render={props => (
-                <Home {...props}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact path='/login'
-              render={props => (
-                <Login {...props}
-                  handleLogin={this.handleLogin}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact path='/signup'
-              render={props => (
-                <Signup {...props}
-                  handleLogin={this.handleLogin}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              path="/recipes" exact
-              render={props => (
-                <Recipes {...props}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              path="/recipe/:id" exact
-              render={props => (
-                <Recipe {...props}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              path="/recipe" exact
-              render={props => (
-                <NewRecipe {...props}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              exact path="/users/:id"
-              render={props => (
-                <User {...props}
-                  handleLogout={this.handleLogout}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
-            <Route
-              path="/public_recipes" exact
-              render={props => (
-                <PublicRecipes {...props}
-                  handleLogin={this.handleLogin}
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                  user={this.state.user}
-                />
-              )}
-            />
+  return (
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact path='/'
+            render={props => (
+              <Home {...props}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            exact path='/login'
+            render={props => (
+              <Login {...props}
+                handleLogin={handleLogin}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            exact path='/signup'
+            render={props => (
+              <Signup {...props}
+                handleLogin={handleLogin}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path="/recipes" exact
+            render={props => (
+              <Recipes {...props}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path="/recipe/:id" exact
+            render={props => (
+              <Recipe {...props}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path="/recipe" exact
+            render={props => (
+              <NewRecipe {...props}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            exact path="/users/:id"
+            render={props => (
+              <User {...props}
+                handleLogout={handleLogout}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path="/public_recipes" exact
+            render={props => (
+              <PublicRecipes {...props}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
 
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
-  }
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
-
-export default App;
