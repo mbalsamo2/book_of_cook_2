@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
+import EditRecipe from "./EditRecipe";
 
 export default function Recipe(props) {
   const [recipe, setRecipe] = useState({});
@@ -60,6 +61,11 @@ export default function Recipe(props) {
       .catch(error => console.log(error.message));
   }
 
+  const newTo = {
+    pathname: `/recipe/${recipe.id}/edit`,
+    recipeInfo: recipe
+  }
+
   let ingredientList = "No ingredients available";
   let recipeInstruction = "No instructions available";
 
@@ -111,13 +117,20 @@ export default function Recipe(props) {
               }}
             />
           </div>
-          <div className="col-sm-12 col-lg-2">
-            <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
-              Delete Recipe
-            </button>
-          </div>
+          { (recipe.user_id === props.user.id) &&
+            <div>
+              <div className="col-sm-12 col-lg-2">
+                <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
+                  Delete Recipe
+                </button>
+              </div>
+              <Link to={newTo} className="btn btn-warning">
+                Edit Recipe
+              </Link>
+            </div>
+          }
         </div>
-        <Link to="/recipes" className="btn btn-link">
+        <Link to="/recipes" role="button" className="btn btn-link">
           Back to recipes
         </Link>
       </div>

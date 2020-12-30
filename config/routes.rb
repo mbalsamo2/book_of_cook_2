@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       get '/show/:id', to: 'recipes#show'
       delete '/destroy/:id', to: 'recipes#destroy'
       get 'recipes/public_recipes'
+      get 'recipes/:id/edit', to: 'recipes#edit'
+      put 'recipes/:id/update', to: 'recipes#update'
       namespace :users do
         get 'users/index'
         post 'users/create'
