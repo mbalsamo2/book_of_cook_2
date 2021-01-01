@@ -10,6 +10,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import User from "../components/User";
 import EditRecipe from "../components/EditRecipe";
+import CopyRecipe from "../components/CopyRecipe";
 
 export default function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -134,6 +135,17 @@ export default function App(props) {
             path="/recipe/:id/edit" exact
             render={props => (
               <EditRecipe {...props}
+                handleLogin={handleLogin}
+                handleLogout={handleLogout}
+                loggedInStatus={isLoggedIn}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path="/recipes/copy" exact
+            render={props => (
+              <CopyRecipe {...props}
                 handleLogin={handleLogin}
                 handleLogout={handleLogout}
                 loggedInStatus={isLoggedIn}

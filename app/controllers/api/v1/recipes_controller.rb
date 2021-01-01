@@ -30,7 +30,7 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def public_recipes
-    recipes = Recipe.all.order(created_at: :desc)
+    recipes = Recipe.all.where(copy: false).order(created_at: :desc)
     render json: recipes
   end
 
@@ -48,7 +48,7 @@ class Api::V1::RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.permit(:name, :image, :ingredients, :instruction, :user_id)
+    params.permit(:name, :image, :ingredients, :instruction, :user_id, :copy, :public)
   end
 
   def recipe

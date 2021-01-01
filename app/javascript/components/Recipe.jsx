@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import EditRecipe from "./EditRecipe";
+import CopyRecipe from "./CopyRecipe";
 
 export default function Recipe(props) {
   const [recipe, setRecipe] = useState({});
@@ -61,8 +62,13 @@ export default function Recipe(props) {
       .catch(error => console.log(error.message));
   }
 
-  const newTo = {
+  const editInfo = {
     pathname: `/recipe/${recipe.id}/edit`,
+    recipeInfo: recipe
+  }
+
+  const copyRecipeInfo = {
+    pathname: `/recipes/copy`,
     recipeInfo: recipe
   }
 
@@ -117,17 +123,24 @@ export default function Recipe(props) {
               }}
             />
           </div>
-          { (recipe.user_id === props.user.id) &&
+          {
+            (recipe.user_id === props.user.id) &&
             <div>
               <div className="col-sm-12 col-lg-2">
                 <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
                   Delete Recipe
                 </button>
               </div>
-              <Link to={newTo} className="btn btn-warning">
+              <Link to={editInfo} className="btn btn-warning">
                 Edit Recipe
               </Link>
             </div>
+          }
+          {
+            (recipe.user_id !== props.user.id) &&
+            <Link to={copyRecipeInfo} className="btn btn-warning">
+              Copy to Personal Cookbook
+            </Link>
           }
         </div>
         <Link to="/recipes" role="button" className="btn btn-link">

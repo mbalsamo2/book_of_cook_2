@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 
-export default function NewRecipe(props) {
+export default function CopyRecipe(props) {
 
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instruction, setInstruction] = useState("");
+
+  useEffect( () => {
+    setRecipeInfo();
+  }, [])
+
+  const setRecipeInfo = () => {
+    let recipeInfo = props.location.recipeInfo
+    setName(recipeInfo.name)
+    setIngredients(recipeInfo.ingredients)
+    setInstruction(recipeInfo.instruction)
+  }
 
   const stripHtmlEntities = (str) => {
     return String(str)
@@ -27,8 +38,9 @@ export default function NewRecipe(props) {
   }
 
   const onSubmit = (event) => {
+    let id = props.match.params.id
     event.preventDefault();
-    const url = "/api/v1/recipes/create";
+    const url = `/api/v1/recipes/create`;
 
     if (name.length == 0 || ingredients.length == 0 || instruction.length == 0)
       return;
@@ -37,7 +49,7 @@ export default function NewRecipe(props) {
       name,
       ingredients,
       instruction: instruction.replace(/\n/g, "<br> <br>"),
-      copy: false
+      copy: true
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -70,7 +82,7 @@ export default function NewRecipe(props) {
       <div className="row">
         <div className="col-sm-12 col-lg-6 offset-lg-3">
           <h1 className="font-weight-normal mb-5">
-            Add a new recipe to our awesome recipe collection.
+            Want to make any changes before you add it to your cookbook?
           </h1>
           <form onSubmit={onSubmit}>
             <div className="form-group">
@@ -80,6 +92,7 @@ export default function NewRecipe(props) {
                 name="name"
                 id="recipeName"
                 className="form-control"
+                defaultValue={name}
                 required
                 onChange={onChangeName}
               />
@@ -91,6 +104,7 @@ export default function NewRecipe(props) {
                 name="ingredients"
                 id="recipeIngredients"
                 className="form-control"
+                defaultValue={ingredients}
                 required
                 onChange={onChangeIngredients}
               />
@@ -104,11 +118,12 @@ export default function NewRecipe(props) {
               id="instruction"
               name="instruction"
               rows="5"
+              defaultValue={instruction}
               required
               onChange={onChangeInstruction}
             />
             <button type="submit" className="btn custom-button mt-3">
-              Create Recipe
+              Add Recipe
             </button>
             <Link to="/recipes" className="btn btn-link mt-3">
               Back to recipes
