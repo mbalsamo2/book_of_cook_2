@@ -30,7 +30,7 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def public_recipes
-    recipes = Recipe.all.where(copy: false).order(created_at: :desc)
+    recipes = Recipe.all.where(copy: false, public: true).order(created_at: :desc)
     render json: recipes
   end
 

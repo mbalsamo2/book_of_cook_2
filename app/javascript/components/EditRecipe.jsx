@@ -7,6 +7,7 @@ export default function EditRecipe(props) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instruction, setInstruction] = useState("");
+  const [publicRecipe, setPublicRecipe] = useState(true);
 
   useEffect( () => {
     setRecipeInfo();
@@ -17,6 +18,7 @@ export default function EditRecipe(props) {
     setName(recipeInfo.name)
     setIngredients(recipeInfo.ingredients)
     setInstruction(recipeInfo.instruction)
+    setPublicRecipe(recipeInfo.public)
   }
 
   const stripHtmlEntities = (str) => {
@@ -37,6 +39,10 @@ export default function EditRecipe(props) {
     setInstruction(event.target.value);
   }
 
+  const onChangePublicRecipe = (event) => {
+    setPublicRecipe(!publicRecipe);
+  };
+
   const onSubmit = (event) => {
     let id = props.match.params.id
     event.preventDefault();
@@ -48,7 +54,8 @@ export default function EditRecipe(props) {
     const body = {
       name,
       ingredients,
-      instruction: instruction.replace(/\n/g, "<br> <br>")
+      instruction: instruction.replace(/\n/g, "<br> <br>"),
+      public: publicRecipe,
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -84,6 +91,17 @@ export default function EditRecipe(props) {
             How can we make this recipe even better?
           </h1>
           <form onSubmit={onSubmit}>
+            <div className="checkbox">
+              <input
+                type="checkbox"
+                data-toggle="toggle"
+                name="public"
+                id="recipePublic"
+                checked={!publicRecipe}
+                onChange={onChangePublicRecipe}
+              />
+              <label> Make this recipe private </label>
+            </div>
             <div className="form-group">
               <label htmlFor="recipeName">Recipe name</label>
               <input

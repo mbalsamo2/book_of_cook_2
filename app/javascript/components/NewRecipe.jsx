@@ -7,6 +7,7 @@ export default function NewRecipe(props) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instruction, setInstruction] = useState("");
+  const [publicRecipe, setPublicRecipe] = useState(true);
 
   const stripHtmlEntities = (str) => {
     return String(str)
@@ -26,6 +27,10 @@ export default function NewRecipe(props) {
     setInstruction(event.target.value);
   }
 
+  const onChangePublicRecipe = (event) => {
+    setPublicRecipe(!publicRecipe);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     const url = "/api/v1/recipes/create";
@@ -37,7 +42,8 @@ export default function NewRecipe(props) {
       name,
       ingredients,
       instruction: instruction.replace(/\n/g, "<br> <br>"),
-      copy: false
+      copy: false,
+      public: publicRecipe,
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -73,6 +79,16 @@ export default function NewRecipe(props) {
             Add a new recipe to our awesome recipe collection.
           </h1>
           <form onSubmit={onSubmit}>
+          <div className="checkbox">
+            <input
+              type="checkbox"
+              data-toggle="toggle"
+              name="public"
+              id="recipePublic"
+              onChange={onChangePublicRecipe}
+            />
+            <label> Make this recipe private </label>
+          </div>
             <div className="form-group">
               <label htmlFor="recipeName">Recipe name</label>
               <input

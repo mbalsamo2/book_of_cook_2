@@ -109,6 +109,9 @@ export default function Recipe(props) {
       </div>
       <div className="container py-5">
         <div className="row">
+          <div>
+            <h4 className="mb-2">This recipe is: {recipe.public ? "Public" : "Private"}</h4>
+          </div>
           <div className="col-sm-12 col-lg-3">
             <ul className="list-group">
               <h5 className="mb-2">Ingredients</h5>
