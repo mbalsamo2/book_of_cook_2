@@ -34,3 +34,11 @@
   width: 100%;
   opacity: 0.4;
 }
+.centered {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 125%;
+  text-align: center;
+}
