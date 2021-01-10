@@ -26,7 +26,7 @@ export default function Recipe(props) {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => setRecipe(response))
+      .then((response) => {setRecipe(response); debugger})
       .catch(() => props.history.push("/recipes"));
   }
 
