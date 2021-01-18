@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 's3/direct_post'
   namespace :api do
     namespace :v1 do
       get 'recipes/index'

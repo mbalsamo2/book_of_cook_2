@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import NavigationBar from "./NavigationBar";
+import defaultRecipe from '../../assets/images/recipes_default.jpg';
+import axios from 'axios'
 
 export default function NewRecipe(props) {
 
@@ -8,7 +10,8 @@ export default function NewRecipe(props) {
   const [ingredients, setIngredients] = useState("");
   const [instruction, setInstruction] = useState("");
   const [publicRecipe, setPublicRecipe] = useState(true);
-  const [recipeImage, setRecipeImage] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [recipeImage, setRecipeImage] = useState(null);
 
   const stripHtmlEntities = (str) => {
     return String(str)
@@ -32,37 +35,70 @@ export default function NewRecipe(props) {
     setPublicRecipe(!publicRecipe);
   };
 
+  const onChangeImage = async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const payload = await fetch(`http://localhost:3001/s3/direct_post`).then(res =>
+      res.json()
+    );
+
+    const url = payload.url;
+    const formData = new FormData();
+
+    Object.keys(payload.fields).forEach(key =>
+      formData.append(key, payload.fields[key])
+    );
+    formData.append('file', file);
+
+    const xml = await fetch(url, {
+      method: 'POST',
+      body: formData
+    }).then(res => res.text());
+
+    const uploadUrl = new DOMParser()
+      .parseFromString(xml, 'application/xml')
+      .getElementsByTagName('Location')[0].textContent;
+
+      setRecipeImage(uploadUrl)
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
     const url = "/api/v1/recipes/create";
 
     if (name.length == 0 || ingredients.length == 0 || instruction.length == 0)
       return;
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('ingredients', ingredients);
-      formData.append('instruction', instruction.replace(/\n/g, "<br> <br>"));
-      formData.append('copy', false);
-      formData.append('public', publicRecipe);
-      formData.append('image', recipeImage);
+      // const recipeFormData = new FormData();
+      //
+      // recipeFormData.append('name', name);
+      // recipeFormData.append('ingredients', ingredients);
+      // recipeFormData.append('instruction', instruction.replace(/\n/g, "<br> <br>"));
+      // recipeFormData.append('copy', false);
+      // recipeFormData.append('public', publicRecipe);
 
-    // const body = {
-    //   name,
-    //   ingredients,
-    //   instruction: instruction.replace(/\n/g, "<br> <br>"),
-    //   copy: false,
-    //   public: publicRecipe,
-    //   image: recipeImage
-    // };
+      // if (recipeImage !== null) {
+      //   recipeFormData.append('image', recipeImage);
+      // }
 
+      // formData.append('image', recipeImage);
+
+    const body = {
+      name,
+      ingredients,
+      instruction: instruction.replace(/\n/g, "<br> <br>"),
+      copy: false,
+      public: publicRecipe,
+      image: recipeImage
+    };
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
       method: "POST",
-      // headers: {
-      //   "X-CSRF-Token": token,
-      //   "Content-Type": "application/json"
-      // },
-      body: formData //JSON.stringify(body)
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(body) //recipeFormData //JSON.stringify(body)
     })
       .then(response => {
         if (response.ok) {
@@ -72,23 +108,6 @@ export default function NewRecipe(props) {
       })
       .then(response => props.history.push(`/recipe/${response.id}`))
       .catch(error => console.log(error.message));
-  };
-
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
-
-  const handleImageUpload = (event) => {
-    const [file] = event.target.files;
-    if (file) {
-      const reader = new FileReader();
-      const {current} = uploadedImage;
-      setRecipeImage(file);
-      current.file = file;
-      reader.onload = (event) => {
-        current.src = event.target.result;
-      }
-      reader.readAsDataURL(file);
-    }
   };
 
   return (
@@ -104,16 +123,17 @@ export default function NewRecipe(props) {
             Add a new recipe to our awesome recipe collection.
           </h1>
           <form onSubmit={onSubmit}>
-          <div className="checkbox">
-            <input
-              type="checkbox"
-              data-toggle="toggle"
-              name="public"
-              id="recipePublic"
-              onChange={onChangePublicRecipe}
-            />
-            <label> Make this recipe private </label>
-          </div>
+            <div className="checkbox">
+              <input
+                type="checkbox"
+                data-toggle="toggle"
+                name="public"
+                id="recipePublic"
+                onChange={onChangePublicRecipe}
+              />
+              <label> Make this recipe private </label>
+            </div>
+
             <div className="form-group">
               <label htmlFor="recipeName">Recipe name</label>
               <input
@@ -125,6 +145,7 @@ export default function NewRecipe(props) {
                 onChange={onChangeName}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="recipeIngredients">Ingredients</label>
               <input
@@ -139,49 +160,34 @@ export default function NewRecipe(props) {
                 Separate each ingredient with a comma.
               </small>
             </div>
-            <label htmlFor="instruction">Preparation Instructions</label>
-            <textarea
+
+            <div className="form-group">
+              <label htmlFor="instruction">Preparation Instructions</label>
+              <textarea
               className="form-control"
               id="instruction"
               name="instruction"
               rows="5"
               required
               onChange={onChangeInstruction}
-            />
+              />
+            </div>
+
             <div className="form-group">
+              <label htmlFor="recipeImage">Image</label>
               <input
                 type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                ref={imageUploader}
-                style={{display:"none"}}
+                onChange={onChangeImage}
               />
-              <div
-                style={{
-                  height: "60px",
-                  width: "60px",
-                  border: "2px dashed black"
-                }}
-                onClick={() => imageUploader.current.click()}
-              >
-                <img
-                  ref={uploadedImage}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    position: "absolute"
-                  }}
-                />
-              </div>
-              Click to Upload Image
             </div>
+
             <button type="submit" className="btn custom-button mt-3">
               Create Recipe
             </button>
-            <Link to="/recipes" className="btn btn-link mt-3">
-              Back to recipes
-            </Link>
           </form>
+          <Link to="/recipes" className="btn btn-link mt-3">
+          Back to recipes
+          </Link>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export default function Recipe(props) {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => {setRecipe(response); debugger})
+      .then(response => setRecipe(response))
       .catch(() => props.history.push("/recipes"));
   }
 
@@ -88,6 +88,17 @@ export default function Recipe(props) {
   if (recipe.instruction) {
     recipeInstruction = addHtmlEntities(recipe.instruction);
   };
+
+  // const readImage = (recipe) => {
+  //   debugger;
+  //   const reader = new FileReader();
+  //   const {current} = recipe.image;
+  //   current.file = recipe.image;
+  //   reader.onload = (event) => {
+  //     current.src = event.target.result;
+  //   }
+  //   reader.readAsDataURL(recipe.image);
+  // }
 
   return (
     <div className="">
