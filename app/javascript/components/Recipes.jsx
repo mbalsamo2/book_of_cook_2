@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
-import defaultRecipe from '../../assets/images/recipes_default.jpg';
+import defaultImage from '../../assets/images/default_image.jpg';
 
 export default function Recipes(props) {
   const [recipes, setRecipes] = useState([]);
@@ -26,9 +26,9 @@ export default function Recipes(props) {
   const allRecipes = recipes.map((recipe, index) => (
     <div key={index} className="col-md-6 col-lg-4">
       <div className="card mb-4">
-        <div className="centered">{recipe.name}</div>
+        <div>{recipe.name}</div>
         <img
-          src={defaultRecipe}
+          src={recipe.image ? recipe.image : defaultImage}
           className="card-img-top"
           alt={`${recipe.name} image`}
         />
