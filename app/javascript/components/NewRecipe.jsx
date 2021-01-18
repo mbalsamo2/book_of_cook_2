@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import NavigationBar from "./NavigationBar";
-import defaultRecipe from '../../assets/images/recipes_default.jpg';
-import axios from 'axios'
+import defaultImage from '../../assets/images/default_image.jpg';
 
 export default function NewRecipe(props) {
 
@@ -10,7 +9,6 @@ export default function NewRecipe(props) {
   const [ingredients, setIngredients] = useState("");
   const [instruction, setInstruction] = useState("");
   const [publicRecipe, setPublicRecipe] = useState(true);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [recipeImage, setRecipeImage] = useState(null);
 
   const stripHtmlEntities = (str) => {
@@ -69,19 +67,6 @@ export default function NewRecipe(props) {
 
     if (name.length == 0 || ingredients.length == 0 || instruction.length == 0)
       return;
-      // const recipeFormData = new FormData();
-      //
-      // recipeFormData.append('name', name);
-      // recipeFormData.append('ingredients', ingredients);
-      // recipeFormData.append('instruction', instruction.replace(/\n/g, "<br> <br>"));
-      // recipeFormData.append('copy', false);
-      // recipeFormData.append('public', publicRecipe);
-
-      // if (recipeImage !== null) {
-      //   recipeFormData.append('image', recipeImage);
-      // }
-
-      // formData.append('image', recipeImage);
 
     const body = {
       name,
@@ -98,7 +83,7 @@ export default function NewRecipe(props) {
         "X-CSRF-Token": token,
         "Content-Type": 'application/json'
       },
-      body: JSON.stringify(body) //recipeFormData //JSON.stringify(body)
+      body: JSON.stringify(body)
     })
       .then(response => {
         if (response.ok) {

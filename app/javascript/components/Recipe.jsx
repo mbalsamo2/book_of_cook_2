@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import EditRecipe from "./EditRecipe";
 import CopyRecipe from "./CopyRecipe";
+import defaultImage from '../../assets/images/default_image.jpg';
 
 export default function Recipe(props) {
   const [recipe, setRecipe] = useState({});
@@ -89,17 +90,6 @@ export default function Recipe(props) {
     recipeInstruction = addHtmlEntities(recipe.instruction);
   };
 
-  // const readImage = (recipe) => {
-  //   debugger;
-  //   const reader = new FileReader();
-  //   const {current} = recipe.image;
-  //   current.file = recipe.image;
-  //   reader.onload = (event) => {
-  //     current.src = event.target.result;
-  //   }
-  //   reader.readAsDataURL(recipe.image);
-  // }
-
   return (
     <div className="">
       <NavigationBar
@@ -109,7 +99,7 @@ export default function Recipe(props) {
       />
       <div className="hero position-relative d-flex align-items-center justify-content-center">
         <img
-          src={recipe.image}
+          src={recipe.image ? recipe.image : defaultImage}
           alt={`${recipe.name} image`}
           className="img-fluid position-absolute"
         />
