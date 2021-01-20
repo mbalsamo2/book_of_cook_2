@@ -8,6 +8,7 @@ export default function EditRecipe(props) {
   const [ingredients, setIngredients] = useState("");
   const [instruction, setInstruction] = useState("");
   const [publicRecipe, setPublicRecipe] = useState(true);
+  const [recipeImage, setRecipeImage] = useState(null);
 
   useEffect( () => {
     setRecipeInfo();
@@ -19,6 +20,7 @@ export default function EditRecipe(props) {
     setIngredients(recipeInfo.ingredients)
     setInstruction(recipeInfo.instruction)
     setPublicRecipe(recipeInfo.public)
+    setRecipeImage(recipeInfo.image)
   }
 
   const stripHtmlEntities = (str) => {
@@ -43,6 +45,34 @@ export default function EditRecipe(props) {
     setPublicRecipe(!publicRecipe);
   };
 
+  const onChangeImage = async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const payload = await fetch(`http://localhost:3001/s3/direct_post`).then(res =>
+      res.json()
+    );
+
+    const url = payload.url;
+    const formData = new FormData();
+
+    Object.keys(payload.fields).forEach(key =>
+      formData.append(key, payload.fields[key])
+    );
+    formData.append('file', file);
+
+    const xml = await fetch(url, {
+      method: 'POST',
+      body: formData
+    }).then(res => res.text());
+
+    const uploadUrl = new DOMParser()
+      .parseFromString(xml, 'application/xml')
+      .getElementsByTagName('Location')[0].textContent;
+
+      setRecipeImage(uploadUrl)
+  }
+
   const onSubmit = (event) => {
     let id = props.match.params.id
     event.preventDefault();
@@ -56,6 +86,7 @@ export default function EditRecipe(props) {
       ingredients,
       instruction: instruction.replace(/\n/g, "<br> <br>"),
       public: publicRecipe,
+      image: recipeImage
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -102,6 +133,7 @@ export default function EditRecipe(props) {
               />
               <label> Make this recipe private </label>
             </div>
+
             <div className="form-group">
               <label htmlFor="recipeName">Recipe name</label>
               <input
@@ -114,6 +146,7 @@ export default function EditRecipe(props) {
                 onChange={onChangeName}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="recipeIngredients">Ingredients</label>
               <input
@@ -129,6 +162,7 @@ export default function EditRecipe(props) {
                 Separate each ingredient with a comma.
               </small>
             </div>
+
             <label htmlFor="instruction">Preparation Instructions</label>
             <textarea
               className="form-control"
@@ -139,13 +173,22 @@ export default function EditRecipe(props) {
               required
               onChange={onChangeInstruction}
             />
+
+            <div className="form-group">
+              <label htmlFor="recipeImage">Image</label>
+              <input
+                type="file"
+                onChange={onChangeImage}
+              />
+            </div>
+
             <button type="submit" className="btn custom-button mt-3">
               Update Recipe
             </button>
-            <Link to="/recipes" className="btn btn-link mt-3">
-              Back to recipes
-            </Link>
           </form>
+          <Link to="/recipes" className="btn btn-link mt-3">
+            Back to recipes
+          </Link>
         </div>
       </div>
     </div>
