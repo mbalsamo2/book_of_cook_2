@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../assets/images/logo_2.png';
+import logo from '../../assets/images/book_of_cook.jpg';
 import NavigationBar from "./NavigationBar";
+import Login from "./Login";
+import Signup from "./Signup";
 import axios from 'axios'
 
 const Home = (props) => {
@@ -16,36 +18,24 @@ const Home = (props) => {
   }
 
   return (
-    <div className="primary-color align-items-center">
-      <div className="container secondary-color">
-        <img
-          src={logo}
-          alt={'The Book of Cook'}
-        />
-        <p className="lead">
-          The virtual cookbook and recipe organizer.
-        </p>
-        <hr className="my-4" />
-        <Link
-          to="/public_recipes"
-          className="btn btn-lg custom-button"
-          role="button">
-          View Public Recipes
-        </Link>
-        <Link
-          to='/login'
-          className="btn btn-lg custom-button"
-          role="button">
-          LOG IN!!
-        </Link>
-        <Link
-          to='/signup'
-          className="btn btn-lg custom-button"
-          role="button">
-          SIGN UP!
-        </Link>
-        <br></br>
-      </div>
+    <div>
+
+      <img
+        style={{display: "block", margin: "0 auto", marginTop: "5%"}}
+        src={logo}
+        alt={'The Book of Cook'}
+      />
+
+      <h2 style={{textAlign: "center", padding: "1%"}}>
+        The virtual cookbook and recipe organizer.
+      </h2>
+
+      <Login {...props}
+        handleLogin={props.handleLogin}
+        loggedInStatus={props.isLoggedIn}
+        user={props.user}
+      />
+
     </div>
   );
 };

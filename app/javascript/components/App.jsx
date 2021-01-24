@@ -15,6 +15,7 @@ import CopyRecipe from "../components/CopyRecipe";
 export default function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
+  document.body.style.backgroundColor = "#F8F8F8";
 
   useEffect( () => {
     loginStatus();
@@ -43,7 +44,7 @@ export default function App(props) {
   }
 
   return (
-    <div>
+    <div className="container">
       <BrowserRouter>
         <Switch>
           <Route
@@ -51,6 +52,7 @@ export default function App(props) {
             render={props => (
               <Home {...props}
                 handleLogout={handleLogout}
+                handleLogin={handleLogin}
                 loggedInStatus={isLoggedIn}
                 user={user}
               />
