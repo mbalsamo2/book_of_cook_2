@@ -42,3 +42,19 @@
   font-size: 125%;
   text-align: center;
 }
+
+
+/* mdb css */
+
+.col {
+padding: 1rem;
+background-color: #33b5e5;
+border: 2px solid #fff;
+color: #fff;
+text-align: center;
+}
+
+#book_blue {
+  background-color: #9fc5e9;
+  color: black;
+}

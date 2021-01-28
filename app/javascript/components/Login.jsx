@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } from 'mdbreact';
+import '../../assets/stylesheets/application.css'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
@@ -66,7 +68,7 @@ class Login extends Component {
     return (
       <div className="card" style={{width: "50%", display: "block", margin: "0 auto"}}>
 
-        <h5 className="card-header info-color white-text text-center py-4">
+        <h5 id="book_blue" className="card-header text-center py-4">
           Log In
         </h5>
 
@@ -74,7 +76,7 @@ class Login extends Component {
           <form
             onSubmit={this.handleSubmit}
             className="text-center"
-            style={{color: "#757575"}}>
+          >
 
             <div className="md-form">
               <input
@@ -110,8 +112,9 @@ class Login extends Component {
             </div>
 
             <button
-              className="btn btn-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+              className="btn btn-rounded btn-block my-4 waves-effect z-depth-0"
               placeholder="submit"
+              id="book_blue"
               type="submit"
               role="button">
               Log In
@@ -119,7 +122,8 @@ class Login extends Component {
 
             <Link
               to='/signup'
-              className="btn btn-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+              id="book_blue"
+              className="btn btn-rounded btn-block my-4"
               role="button">
               Create an Account
             </Link>
