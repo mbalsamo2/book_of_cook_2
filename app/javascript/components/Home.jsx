@@ -21,19 +21,21 @@ const Home = (props) => {
 
   return (
     <div>
-      <MDBContainer>
+      <MDBContainer className="fluid">
         <MDBRow className="justify-content-md-center mt-3">
           <img
-            className="text-center"
+            className="img-fluid z-depth-1"
             src={logo}
             alt={'The Book of Cook'}
           />
         </MDBRow>
 
         <MDBRow className="justify-content-md-center mt-2 mb-5">
-          <h2>
-            The virtual cookbook and recipe organizer.
-          </h2>
+          <div id="slogan" className="col">
+            <h2>
+              The virtual cookbook and recipe organizer.
+            </h2>
+          </div>
         </MDBRow>
 
         <MDBRow className="justify-content-md-center">

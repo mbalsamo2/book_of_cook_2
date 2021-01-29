@@ -58,3 +58,13 @@ text-align: center;
   background-color: #9fc5e9;
   color: black;
 }
+
+#app {
+  max-width: 100%
+}
+
+#slogan {
+  background-color: #F8F8F8;
+  color: black;
+  border-color: #F8F8F8;
+}

@@ -16,6 +16,8 @@ export default function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   document.body.style.backgroundColor = "#F8F8F8";
+  // document.body.style.maxWidth = "fit-content";
+  document.body.style.minWidth = "fit-content";
 
   useEffect( () => {
     loginStatus();
@@ -44,7 +46,7 @@ export default function App(props) {
   }
 
   return (
-    <div className="container">
+    <div id="app">
       <BrowserRouter>
         <Switch>
           <Route
