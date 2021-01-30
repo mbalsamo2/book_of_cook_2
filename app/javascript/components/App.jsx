@@ -11,6 +11,7 @@ import Signup from "../components/Signup";
 import User from "../components/User";
 import EditRecipe from "../components/EditRecipe";
 import CopyRecipe from "../components/CopyRecipe";
+import Logo from "../components/Logo";
 
 export default function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

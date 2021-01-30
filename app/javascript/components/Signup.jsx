@@ -4,6 +4,7 @@ import '../../assets/stylesheets/application.css'
 import axios from 'axios'
 import logo from '../../assets/images/book_of_cook.jpg';
 import {Link} from 'react-router-dom'
+import Logo from "./Logo";
 
 class Signup extends Component {
   constructor(props) {
@@ -67,21 +68,8 @@ class Signup extends Component {
       <div>
 
         <MDBContainer className="fluid">
-          <MDBRow className="justify-content-md-center mt-3">
-            <img
-              className="img-fluid z-depth-1"
-              src={logo}
-              alt={'The Book of Cook'}
-            />
-          </MDBRow>
 
-          <MDBRow className="justify-content-md-center mt-2 mb-5">
-            <div id="slogan" className="col">
-              <h2>
-                The virtual cookbook and recipe organizer.
-              </h2>
-            </div>
-          </MDBRow>
+          <Logo />
 
           <MDBRow className="justify-content-md-center">
             <div className="card" style={{width: "50%", display: "block", margin: "0 auto"}}>
