@@ -1,5 +1,5 @@
-import React from "react";
-import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
+import React, { useState } from "react";
+import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBRow, MDBNavbarToggler, MDBCollapse } from 'mdbreact';
 import logo from '../../assets/images/book_of_cook.jpg';
 import Recipes from "../components/Recipes";
 import PublicRecipes from "../components/PublicRecipes";
@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios'
 
 export default function NavigationBar(props) {
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
     axios.delete('http://localhost:3001/logout', {withCredentials: true})
@@ -18,65 +19,104 @@ export default function NavigationBar(props) {
      .catch(error => console.log(error));
   }
 
+  const toggleCollapse = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <div>
-      <MDBNavbar style={{"backgroundColor":"#e91e63"}} dark expand="md" scrolling fixed="top">
-        <MDBNavbarBrand href="/">
-            <strong>Navbar</strong>
-        </MDBNavbarBrand>
-        <MDBCollapse navbar>
-        </MDBCollapse>
-      </MDBNavbar>
+      <MDBContainer className="fluid">
+        <MDBRow>
+          <MDBNavbar
+            style={{"backgroundColor":"#959595"}}
+            dark
+            expand="md"
+            scrolling
+            fixed="top"
+            className="py-1">
+            <MDBNavbarBrand href="/recipes">
+              <img
+                className="z-depth-1"
+                style={{"height":"4rem"}}
+                src={logo}
+                alt={'The Book of Cook'}
+              />
+            </MDBNavbarBrand>
+
+            <MDBNavbarToggler onClick={toggleCollapse} />
+            <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
+              <MDBNavbarNav left>
+                { props.loggedInStatus &&
+                  (Object.keys(props.user).length !== 0) &&
+                  <MDBNavItem>
+                    <strong id="nav_links">Hello, Chef {props.user.username}!</strong>
+                  </MDBNavItem>
+                }
+
+                { !props.loggedInStatus &&
+                  (Object.keys(props.user).length === 0) &&
+                  <MDBNavItem>
+                    <strong id="nav_links">Hello, future chef!</strong>
+                  </MDBNavItem>
+                }
+              </MDBNavbarNav>
+
+              <MDBNavbarNav right>
+                { (Object.keys(props.user).length !== 0) &&
+                  <MDBNavItem>
+                    <Link
+                      to="/recipes"
+                      className="px-2 mx-2 my-3"
+                      id="nav_links"
+                    >
+                      Your Cookbook
+                    </Link>
+                  </MDBNavItem>
+                }
+
+                <MDBNavItem>
+                  <Link
+                    to="/public_recipes"
+                    className="px-2 mx-2 my-3"
+                    id="nav_links"
+                  >
+                    Public Cookbook
+                  </Link>
+                </MDBNavItem>
+
+                {
+                  props.loggedInStatus &&
+                  (Object.keys(props.user).length !== 0) &&
+                  <MDBNavItem>
+                    <Link
+                      to="/logout"
+                      onClick={handleClick}
+                      className="px-2 mx-2 my-3"
+                      id="nav_links"
+                    >
+                      Log Out!
+                    </Link>
+                  </MDBNavItem>
+                }
+
+                { !props.loggedInStatus &&
+                  (Object.keys(props.user).length === 0) &&
+                  <MDBNavItem>
+                    <Link
+                      to="/login"
+                      className="px-2 mx-2 my-3"
+                      id="nav_links"
+                    >
+                      Login
+                    </Link>
+                  </MDBNavItem>
+                }
+              </MDBNavbarNav>
+            </MDBCollapse>
+
+          </MDBNavbar>
+        </MDBRow>
+      </MDBContainer>
     </div>
   )
-  // return (
-  //   <div>
-  //     <Navbar bg="light" variant="light">
-  //       <Navbar.Brand href="/">
-  //         <img
-  //           style={{"height":"4rem"}}
-  //           src={logo}
-  //           alt={'The Book of Cook'}
-  //         />
-  //       </Navbar.Brand>
-  //       { props.loggedInStatus &&
-  //         (Object.keys(props.user).length !== 0) &&
-  //         <Nav className="mr-auto">
-  //           Hello, Chef {props.user.username}!
-  //         </Nav>
-  //       }
-  //       { !props.loggedInStatus &&
-  //         (Object.keys(props.user).length === 0) &&
-  //         <Nav className="mr-auto">
-  //           Hello, future chef!
-  //         </Nav>
-  //       }
-  //       { (Object.keys(props.user).length !== 0) &&
-  //         <Nav className="mr-auto">
-  //           <Link to="/recipes">
-  //             Your Cookbook
-  //           </Link>
-  //         </Nav>
-  //       }
-  //       <Nav className="mr-auto">
-  //         <Link to="/public_recipes">
-  //           Public Cookbook
-  //         </Link>
-  //       </Nav>
-  //       {
-  //         props.loggedInStatus &&
-  //         (Object.keys(props.user).length !== 0) &&
-  //         <Link to='/logout' onClick={handleClick}>Log Out!</Link>
-  //       }
-  //       { !props.loggedInStatus &&
-  //         (Object.keys(props.user).length === 0) &&
-  //         <Nav className="mr-auto">
-  //           <Link to="/login">
-  //             Login
-  //           </Link>
-  //         </Nav>
-  //       }
-  //     </Navbar>
-  //   </div>
-  // );
 };
