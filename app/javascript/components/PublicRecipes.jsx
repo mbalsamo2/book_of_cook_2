@@ -33,13 +33,18 @@ export default function PublicRecipes(props) {
           alt={`${recipe.name} image`}
         />
         <div className="card-body">
-          <Link to={`/recipe/${recipe.id}`} className="btn custom-button">
+          <Link
+            to={`/recipe/${recipe.id}`}
+            className="btn custom-button"
+            id="book_blue"
+          >
             View Recipe
           </Link>
         </div>
       </div>
     </div>
   ));
+
   const noRecipe = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
       <h4>
@@ -55,20 +60,26 @@ export default function PublicRecipes(props) {
         loggedInStatus={props.loggedInStatus}
         handleLogout={props.handleLogout}
       />
-      <section className="jumbotron jumbotron-fluid text-center">
-        <div className="container py-5">
-          <h1 className="display-4">Recipes for every occasion</h1>
+      <section className="jumbotron jumbotron-fluid text-center pb-3">
+        <div className="container pt-5">
+          <h4 className="display-4">Your virtual cookbook.</h4>
           <p className="lead text-muted">
-            We’ve pulled together our most popular recipes, our latest
-            additions, and our editor’s picks, so there’s sure to be something
-            tempting for you to try.
+            Create your very own recipes to add to your personal cookbook. Make
+            a recipe private to keep those old family recipes a secret. See what
+            other chefs are mixing up in the kitchen within the public cookbook
+            and add any tempting recipes to your cookbook to save for later.
+            There's always something new to make within The Book of Cook.
           </p>
         </div>
       </section>
       <div className="py-5">
         <main className="container">
           <div className="text-right mb-3">
-            <Link to="/recipe" className="btn custom-button">
+            <Link
+              to="/recipe"
+              className="btn custom-button"
+              id="book_blue"
+            >
               Create New Recipe
             </Link>
           </div>

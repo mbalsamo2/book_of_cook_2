@@ -71,4 +71,7 @@ text-align: center;
 
 #nav_links {
   color: white;
+  align-items: center;
+  display: flex;
+  text-align: center;
 }
