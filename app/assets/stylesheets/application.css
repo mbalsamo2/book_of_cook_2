@@ -75,3 +75,9 @@ text-align: center;
   display: flex;
   text-align: center;
 }
+
+#recipe_card_image {
+  width: 100%;
+  height: 15em;
+  object-fit: cover;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBRow, MDBNavbarToggler, MDBCollapse } from 'mdbreact';
+import '../../assets/stylesheets/application.css'
 import logo from '../../assets/images/book_of_cook.jpg';
 import Recipes from "../components/Recipes";
 import PublicRecipes from "../components/PublicRecipes";

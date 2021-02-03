@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import '../../assets/stylesheets/application.css'
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import defaultImage from '../../assets/images/default_image.jpg';
@@ -26,13 +28,24 @@ export default function Recipes(props) {
   const allRecipes = recipes.map((recipe, index) => (
     <div key={index} className="col-md-6 col-lg-4">
       <div className="card mb-4">
-        <div>{recipe.name}</div>
+
         <img
+          id="recipe_card_image"
           src={recipe.image ? recipe.image : defaultImage}
           className="card-img-top"
           alt={`${recipe.name} image`}
         />
+
         <div className="card-body">
+
+          <div className="font-weight-bold card-title">
+            {recipe.name}
+          </div>
+
+          <div className="card-text pb-2">
+            Chef Mia
+          </div>
+
           <Link
             to={`/recipe/${recipe.id}`}
             className="btn custom-button"
@@ -40,10 +53,12 @@ export default function Recipes(props) {
           >
             View Recipe
           </Link>
+
         </div>
       </div>
     </div>
   ));
+
   const noRecipe = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
       <h4>
@@ -77,15 +92,15 @@ export default function Recipes(props) {
             <div className="text-right mb-3">
               <Link
                 to="/recipe"
-                className="btn custom-button"
+                className="btn btn-lg btn-block"
                 id="book_blue"
               >
                 Create New Recipe
               </Link>
             </div>
-            <div className="row">
+            <MDBRow>
               {recipes.length > 0 ? allRecipes : noRecipe}
-            </div>
+            </MDBRow>
           </main>
         </div>
       }
