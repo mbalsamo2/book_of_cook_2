@@ -27,23 +27,19 @@ export default function Recipes(props) {
 
   const allRecipes = recipes.map((recipe, index) => (
     <div key={index} className="col-md-6 col-lg-4">
-      <div className="card mb-4">
+      <div id="parent_card" className="card my-4 p-3 rounded z-depth-1">
 
         <img
           id="recipe_card_image"
           src={recipe.image ? recipe.image : defaultImage}
-          className="card-img-top"
+          className="card-img-top rounded z-depth-1"
           alt={`${recipe.name} image`}
         />
 
-        <div className="card-body">
+        <div className="card-body text-center p-0">
 
-          <div className="font-weight-bold card-title">
+          <div id="recipe_name" className="font-weight-bold card-title">
             {recipe.name}
-          </div>
-
-          <div className="card-text pb-2">
-            Chef Mia
           </div>
 
           <Link
@@ -87,9 +83,9 @@ export default function Recipes(props) {
         </div>
       </section>
       { props.loggedInStatus &&
-        <div className="py-5">
+        <div>
           <main className="container">
-            <div className="text-right mb-3">
+            <div className="text-right mb-5">
               <Link
                 to="/recipe"
                 className="btn btn-lg btn-block"

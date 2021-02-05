@@ -1,4 +1,5 @@
 class Api::V1::RecipesController < ApplicationController
+  attr_accessor :user
 
   def index
     recipes = current_user.recipes.order(created_at: :desc)

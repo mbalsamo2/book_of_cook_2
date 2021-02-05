@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import '../../assets/stylesheets/application.css'
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import defaultImage from '../../assets/images/default_image.jpg';
@@ -25,23 +27,23 @@ export default function PublicRecipes(props) {
 
   const allRecipes = recipes.map((recipe, index) => (
     <div key={index} className="col-md-6 col-lg-4">
-      <div className="card mb-4">
+      <div id="parent_card" className="card my-4 p-3 rounded z-depth-1">
 
         <img
           id="recipe_card_image"
           src={recipe.image ? recipe.image : defaultImage}
-          className="card-img-top"
+          className="card-img-top rounded z-depth-1"
           alt={`${recipe.name} image`}
         />
 
-        <div className="card-body">
+        <div className="card-body text-center p-0">
 
-          <div className="font-weight-bold card-title">
+          <div id="recipe_name" className="font-weight-bold card-title">
             {recipe.name}
           </div>
 
-          <div className="card-text pb-2">
-            Chef Mia
+          <div id="recipe_chef" className="card-text pb-2">
+            Chef {recipe.username}
           </div>
 
           <Link
@@ -60,7 +62,7 @@ export default function PublicRecipes(props) {
   const noRecipe = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
       <h4>
-        No recipes yet. Why not <Link to="/new_recipe">create one</Link>
+        No Public Recipes :(
       </h4>
     </div>
   );
@@ -84,9 +86,9 @@ export default function PublicRecipes(props) {
           </p>
         </div>
       </section>
-      <div className="py-5">
+      <div>
         <main className="container">
-          <div className="text-right mb-3">
+          <div className="text-right mb-5">
             <Link
               to="/recipe"
               className="btn btn-lg btn-block"
@@ -98,9 +100,6 @@ export default function PublicRecipes(props) {
           <MDBRow>
             {recipes.length > 0 ? allRecipes : noRecipe}
           </MDBRow>
-          <Link to="/" className="btn btn-link">
-            Home
-          </Link>
         </main>
       </div>
     </>
