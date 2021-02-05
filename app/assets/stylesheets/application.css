@@ -95,3 +95,12 @@ text-align: center;
 #recipe_chef {
   font-size: 1em;
 }
+
+#private {
+  color: red;
+  top: 1.25em;
+}
+
+#login_form {
+  display: block;
+}

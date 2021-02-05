@@ -65,20 +65,20 @@ class Signup extends Component {
   render() {
     const {username, email, password, password_confirmation} = this.state
     return (
-      <div>
+      <div className="justify-content-md-center mb-3 pb-3">
 
-        <MDBContainer className="fluid">
+        <MDBContainer className="fluid mb-3 pb-3">
 
           <Logo />
 
-          <MDBRow className="justify-content-md-center">
-            <div className="card" style={{width: "50%", display: "block", margin: "0 auto"}}>
+          <MDBRow id="login_form" className="justify-content-md-center mx-4 px-4">
+            <div className="card">
 
               <h5 id="book_blue" className="card-header text-center py-4">
                 Sign Up
               </h5>
 
-              <div className="card-body px-lg-5 pt-0">
+              <div className="card-body pt-0">
                 <form
                   onSubmit={this.handleSubmit}
                   className="text-center"

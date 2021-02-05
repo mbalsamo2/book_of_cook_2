@@ -76,13 +76,12 @@ export default function PublicRecipes(props) {
       />
       <section className="jumbotron jumbotron-fluid text-center pb-3">
         <div className="container pt-5">
-          <h4 className="display-4">Your virtual cookbook.</h4>
+          <h4 className="display-4">The public virtual cookbook.</h4>
           <p className="lead text-muted">
-            Create your very own recipes to add to your personal cookbook. Make
-            a recipe private to keep those old family recipes a secret. See what
-            other chefs are mixing up in the kitchen within the public cookbook
-            and add any tempting recipes to your cookbook to save for later.
-            There's always something new to make within The Book of Cook.
+            See what all the other chefs are mixing up in the kitchen within the
+            public cookbook. Click on any tempting recipes and add them to your
+            personal cookbook to save for later. There's always something new to
+            make within The Book of Cook.
           </p>
         </div>
       </section>

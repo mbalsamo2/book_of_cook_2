@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import '../../assets/stylesheets/application.css'
 import NavigationBar from "./NavigationBar";
 import EditRecipe from "./EditRecipe";
 import CopyRecipe from "./CopyRecipe";
@@ -91,28 +93,34 @@ export default function Recipe(props) {
   };
 
   return (
-    <div className="">
+    <div>
       <NavigationBar
         user={props.user}
         loggedInStatus={props.loggedInStatus}
         handleLogout={props.handleLogout}
       />
+
       <div className="hero position-relative d-flex align-items-center justify-content-center">
         <img
           src={recipe.image ? recipe.image : defaultImage}
           alt={`${recipe.name} image`}
           className="img-fluid position-absolute"
         />
-        <div className="overlay bg-dark position-absolute" />
-        <h1 className="display-4 position-relative text-white">
-          {recipe.name}
-        </h1>
       </div>
-      <div className="container py-5">
-        <div className="row">
-          <div>
-            <h4 className="mb-2">This recipe is: {recipe.public ? "Public" : "Private"}</h4>
-          </div>
+
+      <MDBContainer className="fluid">
+        <MDBRow className="justify-content-md-center mt-3 mx-3 text-center">
+          <h1 className="display-4 position-relative text-black">
+            {recipe.name}
+          </h1>
+          { !recipe.public &&
+            <p id="private" className="position-relative font-weight-bold pl-3">
+              PRIVATE
+            </p>
+          }
+        </MDBRow>
+
+        <MDBRow className="justify-content-md-center">
           <div className="col-sm-12 col-lg-3">
             <ul className="list-group">
               <h5 className="mb-2">Ingredients</h5>
@@ -146,11 +154,73 @@ export default function Recipe(props) {
               Copy to Personal Cookbook
             </Link>
           }
-        </div>
-        <Link to="/recipes" role="button" className="btn btn-link">
-          Back to recipes
-        </Link>
-      </div>
+          <Link to="/recipes" role="button" className="btn btn-link">
+            Back to recipes
+          </Link>
+        </MDBRow>
+      </MDBContainer>
     </div>
   );
 }
+
+// bold<div className="">
+//   <NavigationBar
+//     user={props.user}
+//     loggedInStatus={props.loggedInStatus}
+//     handleLogout={props.handleLogout}
+//   />
+//   <div className="hero position-relative d-flex align-items-center justify-content-center">
+//     <img
+//       src={recipe.image ? recipe.image : defaultImage}
+//       alt={`${recipe.name} image`}
+//       className="img-fluid position-absolute"
+//     />
+//     <div className="overlay bg-dark position-absolute" />
+//     <h1 className="display-4 position-relative text-white">
+//       {recipe.name}
+//     </h1>
+//   </div>
+//   <div className="container py-5">
+//     <div className="row">
+//       <div>
+//         <h4 className="mb-2">This recipe is: {recipe.public ? "Public" : "Private"}</h4>
+//       </div>
+//       <div className="col-sm-12 col-lg-3">
+//         <ul className="list-group">
+//           <h5 className="mb-2">Ingredients</h5>
+//           {ingredientList}
+//         </ul>
+//       </div>
+//       <div className="col-sm-12 col-lg-7">
+//         <h5 className="mb-2">Preparation Instructions</h5>
+//         <div
+//           dangerouslySetInnerHTML={{
+//             __html: `${recipeInstruction}`
+//           }}
+//         />
+//       </div>
+//       {
+//         (recipe.user_id === props.user.id) &&
+//         <div>
+//           <div className="col-sm-12 col-lg-2">
+//             <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
+//               Delete Recipe
+//             </button>
+//           </div>
+//           <Link to={editInfo} className="btn btn-warning">
+//             Edit Recipe
+//           </Link>
+//         </div>
+//       }
+//       {
+//         (recipe.user_id !== props.user.id) &&
+//         <Link to={copyRecipeInfo} className="btn btn-warning">
+//           Copy to Personal Cookbook
+//         </Link>
+//       }
+//     </div>
+//     <Link to="/recipes" role="button" className="btn btn-link">
+//       Back to recipes
+//     </Link>
+//   </div>
+// </div>

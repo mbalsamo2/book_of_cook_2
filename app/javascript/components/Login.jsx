@@ -66,13 +66,13 @@ class Login extends Component {
   render() {
     const {username, email, password} = this.state
     return (
-      <div className="card" style={{width: "50%", display: "block", margin: "0 auto"}}>
+      <div className="card">
 
         <h5 id="book_blue" className="card-header text-center py-4">
           Log In
         </h5>
 
-        <div className="card-body px-lg-5 pt-0">
+        <div className="card-body pt-0">
           <form
             onSubmit={this.handleSubmit}
             className="text-center"

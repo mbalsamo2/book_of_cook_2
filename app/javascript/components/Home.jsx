@@ -21,12 +21,12 @@ const Home = (props) => {
   }
 
   return (
-    <div>
-      <MDBContainer className="fluid">
+    <div className="justify-content-md-center mb-3 pb-3">
+      <MDBContainer className="fluid mb-3 pb-3">
 
         <Logo />
 
-        <MDBRow className="justify-content-md-center">
+        <MDBRow id="login_form" className="justify-content-md-center mx-4 px-4">
           <Login {...props}
             handleLogin={props.handleLogin}
             loggedInStatus={props.isLoggedIn}
