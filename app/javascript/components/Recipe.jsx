@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtnGroup } from "mdbreact";
 import '../../assets/stylesheets/application.css'
 import NavigationBar from "./NavigationBar";
 import EditRecipe from "./EditRecipe";
@@ -82,7 +82,7 @@ export default function Recipe(props) {
     ingredientList = recipe.ingredients
       .split(",")
       .map((ingredient, index) => (
-        <li key={index} className="list-group-item">
+        <li id="recipe_list" key={index} className="list-group-item">
           {ingredient}
         </li>
       ));
@@ -109,118 +109,66 @@ export default function Recipe(props) {
       </div>
 
       <MDBContainer className="fluid">
-        <MDBRow className="justify-content-md-center mt-3 mx-3 text-center">
-          <h1 className="display-4 position-relative text-black">
+        <MDBRow className="justify-content-center mt-3 mx-3 mb-1 text-center">
+          <h1 className="display-4 position-relative text-black mb-0">
             {recipe.name}
           </h1>
           { !recipe.public &&
-            <p id="private" className="position-relative font-weight-bold pl-3">
+            <p id="private" className="position-relative font-weight-bold px-3 pb-4">
               PRIVATE
             </p>
           }
         </MDBRow>
 
-        <MDBRow className="justify-content-md-center">
-          <div className="col-sm-12 col-lg-3">
-            <ul className="list-group">
-              <h5 className="mb-2">Ingredients</h5>
-              {ingredientList}
-            </ul>
-          </div>
-          <div className="col-sm-12 col-lg-7">
-            <h5 className="mb-2">Preparation Instructions</h5>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: `${recipeInstruction}`
-              }}
-            />
-          </div>
+        <div id="recipe_parent_div" className="rounded z-depth-1 ml-5 mr-5">
+          <MDBRow className="justify-content-md-center">
+            <div className="col-12">
+              <ul className="list-group">
+                <h5 className="my-3 mx-3 font-weight-bold">Ingredients</h5>
+                {ingredientList}
+              </ul>
+            </div>
+          </MDBRow>
+
+          <MDBRow className="justify-content-center">
+            <div className="col-12">
+              <h5 className="my-3 mx-3 font-weight-bold">Preparation Instructions</h5>
+              <div
+                className="mx-4 mb-3"
+                dangerouslySetInnerHTML={{
+                  __html: `${recipeInstruction}`
+                }}
+              />
+            </div>
+          </MDBRow>
+        </div>
+
+        <MDBRow className="justify-content-center my-3 mx-2">
           {
             (recipe.user_id === props.user.id) &&
-            <div>
-              <div className="col-sm-12 col-lg-2">
-                <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
-                  Delete Recipe
-                </button>
-              </div>
-              <Link to={editInfo} className="btn btn-warning">
+            <MDBBtnGroup>
+              <button type="button" className="btn btn-danger mx-2" onClick={deleteRecipe}>
+                Delete Recipe
+              </button>
+
+              <Link to={editInfo} className="btn btn-warning mx-2">
                 Edit Recipe
               </Link>
-            </div>
+            </MDBBtnGroup>
           }
           {
-            (recipe.user_id !== props.user.id) &&
-            <Link to={copyRecipeInfo} className="btn btn-warning">
+            props.user.id && (recipe.user_id !== props.user.id) &&
+            <Link to={copyRecipeInfo} id="book_blue" className="btn">
               Copy to Personal Cookbook
             </Link>
           }
-          <Link to="/recipes" role="button" className="btn btn-link">
-            Back to recipes
-          </Link>
         </MDBRow>
+
       </MDBContainer>
     </div>
   );
 }
 
-// bold<div className="">
-//   <NavigationBar
-//     user={props.user}
-//     loggedInStatus={props.loggedInStatus}
-//     handleLogout={props.handleLogout}
-//   />
-//   <div className="hero position-relative d-flex align-items-center justify-content-center">
-//     <img
-//       src={recipe.image ? recipe.image : defaultImage}
-//       alt={`${recipe.name} image`}
-//       className="img-fluid position-absolute"
-//     />
-//     <div className="overlay bg-dark position-absolute" />
-//     <h1 className="display-4 position-relative text-white">
-//       {recipe.name}
-//     </h1>
-//   </div>
-//   <div className="container py-5">
-//     <div className="row">
-//       <div>
-//         <h4 className="mb-2">This recipe is: {recipe.public ? "Public" : "Private"}</h4>
-//       </div>
-//       <div className="col-sm-12 col-lg-3">
-//         <ul className="list-group">
-//           <h5 className="mb-2">Ingredients</h5>
-//           {ingredientList}
-//         </ul>
-//       </div>
-//       <div className="col-sm-12 col-lg-7">
-//         <h5 className="mb-2">Preparation Instructions</h5>
-//         <div
-//           dangerouslySetInnerHTML={{
-//             __html: `${recipeInstruction}`
-//           }}
-//         />
-//       </div>
-//       {
-//         (recipe.user_id === props.user.id) &&
-//         <div>
-//           <div className="col-sm-12 col-lg-2">
-//             <button type="button" className="btn btn-danger" onClick={deleteRecipe}>
-//               Delete Recipe
-//             </button>
-//           </div>
-//           <Link to={editInfo} className="btn btn-warning">
-//             Edit Recipe
-//           </Link>
-//         </div>
-//       }
-//       {
-//         (recipe.user_id !== props.user.id) &&
-//         <Link to={copyRecipeInfo} className="btn btn-warning">
-//           Copy to Personal Cookbook
-//         </Link>
-//       }
-//     </div>
-//     <Link to="/recipes" role="button" className="btn btn-link">
-//       Back to recipes
-//     </Link>
-//   </div>
-// </div>
+// <Link to="/recipes" role="button" className="btn btn-link">
+//  Back to recipes
+// </Link>

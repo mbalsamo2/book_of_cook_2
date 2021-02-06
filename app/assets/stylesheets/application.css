@@ -104,3 +104,17 @@ text-align: center;
 #login_form {
   display: block;
 }
+
+#recipe_parent_div {
+  background-color: white;
+}
+
+li#recipe_list {
+  background: #F8F8F8;
+  border-color: white;
+}
+
+li:nth-child(odd)#recipe_list {
+  background: white;
+  border-color: white;
+}

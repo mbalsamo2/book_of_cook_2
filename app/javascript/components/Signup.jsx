@@ -129,7 +129,7 @@ class Signup extends Component {
                   </div>
 
                   <button
-                    className="btn btn-rounded btn-block my-4 waves-effect z-depth-0"
+                    className="btn btn-rounded btn-block my-4"
                     placeholder="submit"
                     id="book_blue"
                     type="submit"

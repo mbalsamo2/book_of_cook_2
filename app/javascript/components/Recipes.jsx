@@ -101,7 +101,7 @@ export default function Recipes(props) {
         </div>
       }
       { !props.loggedInStatus &&
-        <div>
+        <div className="text-center">
           <p>
             Please login to view your personal recipes.
           </p>

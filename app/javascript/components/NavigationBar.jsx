@@ -104,7 +104,7 @@ export default function NavigationBar(props) {
                   (Object.keys(props.user).length === 0) &&
                   <MDBNavItem>
                     <Link
-                      to="/login"
+                      to="/"
                       className="px-2 mx-2 my-3"
                       id="nav_links"
                     >
