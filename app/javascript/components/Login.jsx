@@ -112,9 +112,9 @@ class Login extends Component {
             </div>
 
             <button
-              className="btn btn-rounded btn-block my-4"
+              className="btn btn-rounded btn-block mt-4"
               placeholder="submit"
-              id="book_blue"
+              id="homepage_buttons"
               type="submit"
               role="button">
               Log In
@@ -122,22 +122,13 @@ class Login extends Component {
 
             <Link
               to='/signup'
-              id="book_blue"
+              id="homepage_buttons"
               className="btn btn-rounded btn-block my-4"
               role="button">
               Create an Account
             </Link>
 
-            <Link
-              to='/public_recipes'
-              id="book_blue"
-              className="btn btn-rounded btn-block my-4"
-              role="button">
-              Check out the Public Cookbook!
-            </Link>
-
           </form>
-
         </div>
 
         <div>

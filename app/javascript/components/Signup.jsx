@@ -71,6 +71,17 @@ class Signup extends Component {
 
           <Logo />
 
+          <MDBRow className="justify-content-center">
+            <Link
+              to='/public_recipes'
+              style={{width: "70%"}}
+              id="book_blue"
+              className="btn btn-rounded btn-block mb-4 mx-5 justify-content-center"
+              role="button">
+              Check out the Public Cookbook!
+            </Link>
+          </MDBRow>
+
           <MDBRow id="login_form" className="justify-content-md-center mx-4 px-4">
             <div className="card">
 
@@ -131,7 +142,7 @@ class Signup extends Component {
                   <button
                     className="btn btn-rounded btn-block my-4"
                     placeholder="submit"
-                    id="book_blue"
+                    id="homepage_buttons"
                     type="submit"
                     role="button">
                     Sign Up

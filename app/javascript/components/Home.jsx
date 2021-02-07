@@ -26,6 +26,17 @@ const Home = (props) => {
 
         <Logo />
 
+        <MDBRow className="justify-content-center">
+          <Link
+            to='/public_recipes'
+            style={{width: "70%"}}
+            id="book_blue"
+            className="btn btn-rounded btn-block mb-4 mx-5 justify-content-center"
+            role="button">
+            Check out the Public Cookbook!
+          </Link>
+        </MDBRow>
+
         <MDBRow id="login_form" className="justify-content-md-center mx-4 px-4">
           <Login {...props}
             handleLogin={props.handleLogin}

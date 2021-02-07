@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
 import '../../assets/stylesheets/application.css'
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";

@@ -26,8 +26,8 @@ export default function PublicRecipes(props) {
   }
 
   const allRecipes = recipes.map((recipe, index) => (
-    <div key={index} className="col-md-6 col-lg-4">
-      <div id="parent_card" className="card my-4 p-3 rounded z-depth-1">
+    <div key={index} className="col-md-6 col-lg-4 my-4 relative">
+      <div id="parent_card" className="card h-100 my-4 p-3 rounded z-depth-1">
 
         <img
           id="recipe_card_image"
@@ -36,19 +36,19 @@ export default function PublicRecipes(props) {
           alt={`${recipe.name} image`}
         />
 
-        <div className="card-body text-center p-0">
+        <div className="justify-content-center card-body text-center p-0">
 
           <div id="recipe_name" className="font-weight-bold card-title">
             {recipe.name}
           </div>
 
-          <div id="recipe_chef" className="card-text pb-2">
+          <div id="recipe_chef" className="card-text pb-2 mb-5">
             Chef {recipe.username}
           </div>
 
           <Link
             to={`/recipe/${recipe.id}`}
-            className="btn custom-button"
+            className="align-self-end btn custom-button text-center mb-0"
             id="book_blue"
           >
             View Recipe

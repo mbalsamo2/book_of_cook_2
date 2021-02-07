@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
+import '../../assets/stylesheets/application.css'
 import NavigationBar from "./NavigationBar";
 import defaultImage from '../../assets/images/default_image.jpg';
 
@@ -96,85 +98,101 @@ export default function NewRecipe(props) {
   };
 
   return (
-    <div className="container mt-5">
+    <div>
       <NavigationBar
         user={props.user}
         loggedInStatus={props.loggedInStatus}
         handleLogout={props.handleLogout}
       />
-      <div className="row">
-        <div className="col-sm-12 col-lg-6 offset-lg-3">
-          <h1 className="font-weight-normal mb-5">
-            Add a new recipe to our awesome recipe collection.
-          </h1>
-          <form onSubmit={onSubmit}>
-            <div className="checkbox">
-              <input
-                type="checkbox"
-                data-toggle="toggle"
-                name="public"
-                id="recipePublic"
-                onChange={onChangePublicRecipe}
-              />
-              <label> Make this recipe private </label>
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="recipeName">Recipe name</label>
-              <input
-                type="text"
-                name="name"
-                id="recipeName"
-                className="form-control"
-                required
-                onChange={onChangeName}
-              />
-            </div>
+      <MDBContainer className="justify-content-center mb-5" style={{"marginTop": "8em"}}>
+        <MDBRow className="justify-content-center">
+          <MDBCard className="justify-content-center">
+            <MDBCardBody>
+              <form onSubmit={onSubmit}>
+                <h2 className="font-weight-normal mb-3 justify-content-center text-center">
+                  Add a new recipe to your awesome recipe collection.
+                </h2>
 
-            <div className="form-group">
-              <label htmlFor="recipeIngredients">Ingredients</label>
-              <input
-                type="text"
-                name="ingredients"
-                id="recipeIngredients"
-                className="form-control"
-                required
-                onChange={onChangeIngredients}
-              />
-              <small id="ingredientsHelp" className="form-text text-muted">
-                Separate each ingredient with a comma.
-              </small>
-            </div>
+                <div className="form-group">
+                  <label htmlFor="recipeName">Recipe name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="recipeName"
+                    className="form-control"
+                    required
+                    onChange={onChangeName}
+                  />
+                </div>
 
-            <div className="form-group">
-              <label htmlFor="instruction">Preparation Instructions</label>
-              <textarea
-              className="form-control"
-              id="instruction"
-              name="instruction"
-              rows="5"
-              required
-              onChange={onChangeInstruction}
-              />
-            </div>
+                <div className="form-group">
+                  <label htmlFor="recipeIngredients">Ingredients</label>
+                  <input
+                    type="text"
+                    name="ingredients"
+                    id="recipeIngredients"
+                    className="form-control"
+                    required
+                    onChange={onChangeIngredients}
+                  />
+                  <small id="ingredientsHelp" className="form-text text-muted">
+                    Separate each ingredient with a comma.
+                  </small>
+                </div>
 
-            <div className="form-group">
-              <label htmlFor="recipeImage">Image</label>
-              <input
-                type="file"
-                onChange={onChangeImage}
-              />
-            </div>
+                <div className="form-group">
+                  <label htmlFor="instruction">Preparation Instructions</label>
+                  <textarea
+                  className="form-control"
+                  id="instruction"
+                  name="instruction"
+                  rows="5"
+                  required
+                  onChange={onChangeInstruction}
+                  />
+                </div>
 
-            <button type="submit" className="btn custom-button mt-3">
-              Create Recipe
-            </button>
-          </form>
-          <Link to="/recipes" className="btn btn-link mt-3">
-          Back to recipes
-          </Link>
-        </div>
-      </div>
+                <div className="input-group my-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroupFileAddon01">
+                      Add Image
+                    </span>
+                  </div>
+                  <div className="custom-file">
+                    <input
+                      onChange={onChangeImage}
+                      type="file"
+                      className="custom-file-input"
+                      id="inputGroupFile01"
+                      aria-describedby="inputGroupFileAddon01"
+                    />
+                    <label className="custom-file-label" htmlFor="inputGroupFile01">
+                      Choose file
+                    </label>
+                  </div>
+                </div>
+
+                <div className="custom-control custom-checkbox pl-0 mt-2">
+                  <input
+                    type="checkbox"
+                    className="custon-control-input text-left mx-1"
+                    data-toggle="toggle"
+                    name="public"
+                    id="recipePublic"
+                    onChange={onChangePublicRecipe}
+                  />
+                  <label className="custon-control-label mx-1">Make this recipe private </label>
+                </div>
+
+                <button id="book_blue" type="submit" className="btn custom-button mt-3">
+                  Create Recipe
+                </button>
+              </form>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBRow>
+      </MDBContainer>
     </div>
   );
 }

@@ -100,7 +100,7 @@ export default function Recipe(props) {
         handleLogout={props.handleLogout}
       />
 
-      <div className="hero position-relative d-flex align-items-center justify-content-center">
+      <div className="hero position-relative d-flex align-items-center justify-content-center mt-5">
         <img
           src={recipe.image ? recipe.image : defaultImage}
           alt={`${recipe.name} image`}
@@ -110,7 +110,8 @@ export default function Recipe(props) {
 
       <MDBContainer className="fluid">
         <MDBRow className="justify-content-center mt-3 mx-3 mb-1 text-center">
-          <h1 className="display-4 position-relative text-black mb-0">
+          <h1 className="display-4 position-relative text-black mb-2 font-weight-bolder"
+              style={{"fontSize": "6vw"}}>
             {recipe.name}
           </h1>
           { !recipe.public &&
