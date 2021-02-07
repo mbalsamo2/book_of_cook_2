@@ -36,23 +36,27 @@ export default function PublicRecipes(props) {
           alt={`${recipe.name} image`}
         />
 
-        <div className="justify-content-center card-body text-center p-0">
+        <div className="card-body text-center p-0 ">
 
           <div id="recipe_name" className="font-weight-bold card-title">
             {recipe.name}
           </div>
 
-          <div id="recipe_chef" className="card-text pb-2 mb-5">
-            Chef {recipe.username}
-          </div>
+          <MDBCol md='12' className='d-flex justify-content-center'>
+            <div id="recipe_chef" className="card-text">
+              Chef {recipe.username}
+            </div>
+          </MDBCol>
 
-          <Link
-            to={`/recipe/${recipe.id}`}
-            className="align-self-end btn custom-button text-center mb-0"
-            id="book_blue"
-          >
-            View Recipe
-          </Link>
+          <MDBCol md='12' className='d-flex justify-content-center align-items-end mb-n4'>
+            <Link
+              to={`/recipe/${recipe.id}`}
+              className="floating btn custom-button text-center"
+              id="book_blue"
+            >
+              View Recipe
+            </Link>
+          </MDBCol>
 
         </div>
       </div>

@@ -90,6 +90,7 @@ text-align: center;
 
 #recipe_name {
   font-size: 2em;
+  height: 3em;
 }
 
 #recipe_chef {
