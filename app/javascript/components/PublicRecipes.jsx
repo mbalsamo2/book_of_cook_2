@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon, MDBContainer } from 'mdbreact';
 import '../../assets/stylesheets/application.css'
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
@@ -7,10 +7,19 @@ import defaultImage from '../../assets/images/default_image.jpg';
 
 export default function PublicRecipes(props) {
   const [recipes, setRecipes] = useState([]);
+  const [recipesListDefault, setRecipesListDefault] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchRecipes(recipes)
   },[])
+
+  useEffect(() => {
+    const results = recipesListDefault.filter(recipe => {
+      return recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+    });
+    setRecipes(results);
+  }, [searchTerm])
 
   const fetchRecipes = (recipes) => {
     const url = "/api/v1/recipes/public_recipes";
@@ -21,7 +30,10 @@ export default function PublicRecipes(props) {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => setRecipes(response))
+      .then(response => {
+        setRecipes(response)
+        setRecipesListDefault(response)
+      })
       .catch(() => props.history.push("/api/v1/recipes/public_recipes"));
   }
 
@@ -71,6 +83,10 @@ export default function PublicRecipes(props) {
     </div>
   );
 
+  const updateSearch = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
   return (
     <>
       <NavigationBar
@@ -91,7 +107,39 @@ export default function PublicRecipes(props) {
       </section>
       <div>
         <main className="container">
-          <div className="text-right mb-5">
+          <MDBRow className="mb-4">
+            <MDBCol md="6">
+              <div className="input-group md-form form-sm form-1 pl-0">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="book_blue">
+                    <MDBIcon className="text-white" icon="search"/>
+                  </span>
+                </div>
+                <input
+                  className="form-control my-0 py-1"
+                  type="text"
+                  placeholder="Search for a recipe"
+                  aria-label="Search"
+                  value={searchTerm}
+                  onChange={updateSearch}
+                />
+              </div>
+            </MDBCol>
+
+            <MDBCol md="6" style={{marginTop: "1.25em"}}>
+              <div>
+               <select className="browser-default custom-select">
+                 <option>Choose your option</option>
+                 <option value="1">Newest Recipes</option>
+                 <option value="2">Oldest Recipes</option>
+                 <option value="3">Alphabetical A-Z</option>
+                 <option value="4">Alphabetical Z-A</option>
+               </select>
+             </div>
+           </MDBCol>
+          </MDBRow>
+
+          <div className="text-right mb-3">
             <Link
               to="/recipe"
               className="btn btn-lg btn-block"
@@ -100,6 +148,7 @@ export default function PublicRecipes(props) {
               Create New Recipe
             </Link>
           </div>
+
           <MDBRow>
             {recipes.length > 0 ? allRecipes : noRecipe}
           </MDBRow>

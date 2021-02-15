@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon, MDBContainer } from 'mdbreact';
 import '../../assets/stylesheets/application.css'
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
@@ -7,10 +7,41 @@ import defaultImage from '../../assets/images/default_image.jpg';
 
 export default function Recipes(props) {
   const [recipes, setRecipes] = useState([]);
+  const [recipesListDefault, setRecipesListDefault] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('Newest');
 
   useEffect(() => {
     fetchRecipes(recipes)
   },[])
+
+  useEffect(() => {
+    const results = recipesListDefault.filter(recipe => {
+      return recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+    });
+    setRecipes(results);
+  }, [searchTerm])
+
+  useEffect(() => {
+    let sortedRecipes = []
+    switch (filter) {
+      case 'Newest':
+        sortedRecipes = recipes.sort((a,b) => (a.created_at > b.created_at) ? -1 : 1)
+        break;
+      case 'Oldest':
+        sortedRecipes = recipes.sort((a,b) => (a.created_at > b.created_at) ? 1 : -1)
+        break;
+      case 'Alpha':
+        sortedRecipes = recipes.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+        break;
+      case 'Reverse Alpha':
+        sortedRecipes = recipes.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? -1 : 1)
+        break;
+      default:
+        sortedRecipes = recipes
+    };
+    setRecipes(sortedRecipes);
+  }, [filter])
 
   const fetchRecipes = (recipes) => {
     const url = "/api/v1/recipes/index";
@@ -21,7 +52,10 @@ export default function Recipes(props) {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => setRecipes(response))
+      .then(response => {
+        setRecipes(response)
+        setRecipesListDefault(response)
+      })
       .catch(() => props.history.push("/"));
   }
 
@@ -63,7 +97,15 @@ export default function Recipes(props) {
     </div>
   );
 
-  return (
+  const updateSearch = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
+  const filterRecipes = (event) => {
+    setFilter(event.target.value);
+  }
+
+return (
     <>
       <NavigationBar
         user={props.user}
@@ -85,7 +127,44 @@ export default function Recipes(props) {
       { props.loggedInStatus &&
         <div>
           <main className="container">
-            <div className="text-right mb-5">
+
+            <MDBRow className="mb-4">
+              <MDBCol md="6">
+                <div className="input-group md-form form-sm form-1 pl-0">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="book_blue">
+                      <MDBIcon className="text-white" icon="search"/>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control my-0 py-1"
+                    type="text"
+                    placeholder="Search for a recipe"
+                    aria-label="Search"
+                    value={searchTerm}
+                    onChange={updateSearch}
+                  />
+                </div>
+              </MDBCol>
+
+              <MDBCol md="6" style={{marginTop: "1.25em"}}>
+                <div>
+                 <select
+                  className="browser-default custom-select"
+                  value={filter}
+                  onChange={filterRecipes}
+                >
+                   <option value="1" disabled>Order Recipes by...</option>
+                   <option value="Newest">Newest</option>
+                   <option value="Oldest">Oldest </option>
+                   <option value="Alpha">Alphabetical A-Z</option>
+                   <option value="Reverse Alpha">Alphabetical Z-A</option>
+                 </select>
+               </div>
+             </MDBCol>
+            </MDBRow>
+
+            <div className="text-right mb-3">
               <Link
                 to="/recipe"
                 className="btn btn-lg btn-block"
@@ -94,9 +173,11 @@ export default function Recipes(props) {
                 Create New Recipe
               </Link>
             </div>
+
             <MDBRow>
               {recipes.length > 0 ? allRecipes : noRecipe}
             </MDBRow>
+
           </main>
         </div>
       }
