@@ -40,7 +40,7 @@ export default function Recipes(props) {
       default:
         sortedRecipes = recipes
     };
-    setRecipes(sortedRecipes);
+    setRecipes([...sortedRecipes]);
   }, [filter])
 
   const fetchRecipes = (recipes) => {

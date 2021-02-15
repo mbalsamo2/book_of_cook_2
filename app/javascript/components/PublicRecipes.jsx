@@ -9,6 +9,7 @@ export default function PublicRecipes(props) {
   const [recipes, setRecipes] = useState([]);
   const [recipesListDefault, setRecipesListDefault] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('Newest');
 
   useEffect(() => {
     fetchRecipes(recipes)
@@ -20,6 +21,27 @@ export default function PublicRecipes(props) {
     });
     setRecipes(results);
   }, [searchTerm])
+
+  useEffect(() => {
+    let sortedRecipes = []
+    switch (filter) {
+      case 'Newest':
+        sortedRecipes = recipes.sort((a,b) => (a.created_at > b.created_at) ? -1 : 1)
+        break;
+      case 'Oldest':
+        sortedRecipes = recipes.sort((a,b) => (a.created_at > b.created_at) ? 1 : -1)
+        break;
+      case 'Alpha':
+        sortedRecipes = recipes.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1)
+        break;
+      case 'Reverse Alpha':
+        sortedRecipes = recipes.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? -1 : 1)
+        break;
+      default:
+        sortedRecipes = recipes
+    };
+    setRecipes([...sortedRecipes]);
+  }, [filter])
 
   const fetchRecipes = (recipes) => {
     const url = "/api/v1/recipes/public_recipes";
@@ -87,6 +109,10 @@ export default function PublicRecipes(props) {
     setSearchTerm(event.target.value)
   }
 
+  const filterRecipes = (event) => {
+    setFilter(event.target.value);
+  }
+
   return (
     <>
       <NavigationBar
@@ -128,12 +154,16 @@ export default function PublicRecipes(props) {
 
             <MDBCol md="6" style={{marginTop: "1.25em"}}>
               <div>
-               <select className="browser-default custom-select">
-                 <option>Choose your option</option>
-                 <option value="1">Newest Recipes</option>
-                 <option value="2">Oldest Recipes</option>
-                 <option value="3">Alphabetical A-Z</option>
-                 <option value="4">Alphabetical Z-A</option>
+               <select
+                className="browser-default custom-select"
+                value={filter}
+                onChange={filterRecipes}
+              >
+                 <option value="1" disabled>Order Recipes by...</option>
+                 <option value="Newest">Newest</option>
+                 <option value="Oldest">Oldest </option>
+                 <option value="Alpha">Alphabetical A-Z</option>
+                 <option value="Reverse Alpha">Alphabetical Z-A</option>
                </select>
              </div>
            </MDBCol>
