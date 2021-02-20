@@ -80,16 +80,23 @@ export default function Recipe(props) {
 
   if (recipe.ingredients) {
     ingredientList = recipe.ingredients
-      .split(",")
-      .map((ingredient, index) => (
-        <li id="recipe_list" key={index} className="list-group-item">
-          {ingredient}
-        </li>
-      ));
+                     .split(",")
+                     .map((ingredient, index) => (
+                       <li id="recipe_list" key={index} className="list-group-item">
+                         {ingredient}
+                       </li>
+                     ));
   }
 
   if (recipe.instruction) {
     recipeInstruction = addHtmlEntities(recipe.instruction);
+    recipeInstruction = recipe.instruction
+                        .split(";")
+                        .map((instruction, index) => (
+                          <li key={index} id="instruction_number">
+                            <span id="instruction_number_span">{instruction}</span>
+                          </li>
+                        ))
   };
 
   return (
@@ -135,12 +142,9 @@ export default function Recipe(props) {
           <MDBRow className="justify-content-center">
             <div className="col-12">
               <h5 className="my-3 mx-3 font-weight-bold">Preparation Instructions</h5>
-              <div
-                className="mx-4 mb-3"
-                dangerouslySetInnerHTML={{
-                  __html: `${recipeInstruction}`
-                }}
-              />
+              <ol className="px-2">
+                  {recipeInstruction}
+              </ol>
             </div>
           </MDBRow>
         </div>

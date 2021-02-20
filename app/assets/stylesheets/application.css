@@ -127,3 +127,13 @@ li:nth-child(odd)#recipe_list {
   display: inline-block;
   width: 70%;
 }
+
+#instruction_number {
+  list-style: decimal-leading-zero;
+  font-size: 1.4em;
+  margin: 0 0 0 2em;
+}
+
+#instruction_number_span {
+  font-size: 0.7em;
+}

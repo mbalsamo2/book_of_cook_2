@@ -151,6 +151,9 @@ export default function NewRecipe(props) {
                   required
                   onChange={onChangeInstruction}
                   />
+                  <small id="instructionsHelp" className="form-text text-muted">
+                    Separate each instruction with a semicolon.
+                  </small>
                 </div>
 
                 <div className="input-group my-3">
