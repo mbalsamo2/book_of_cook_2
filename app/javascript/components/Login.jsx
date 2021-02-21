@@ -81,7 +81,7 @@ class Login extends Component {
             <div className="md-form">
               <input
                 style={{width: "70%"}}
-                placeholder="username"
+                placeholder="email or username"
                 type="text"
                 name="username"
                 value={username}
@@ -89,16 +89,6 @@ class Login extends Component {
               />
             </div>
 
-            <div className="md-form">
-              <input
-                style={{width: "70%"}}
-                placeholder="email"
-                type="text"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-            </div>
 
             <div className="md-form">
               <input

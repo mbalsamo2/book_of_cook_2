@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
 
   def create
-    @user = User.find_by(email: session_params[:email])
+    @user = User.where('username = :query OR email = :query',
+                        query: session_params[:username]).first
 
     if @user && @user.authenticate(session_params[:password])
       login!
