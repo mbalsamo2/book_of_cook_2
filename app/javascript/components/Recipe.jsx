@@ -116,10 +116,8 @@ export default function Recipe(props) {
       </div>
 
       <MDBContainer className="fluid">
-        <MDBRow className="justify-content-center mx-3 text-center mt-2"
-                style={{"maxHeight": "20vw"}}>
-          <h1 className="text-black font-weight-bolder"
-              style={{"fontSize": "7vw", "lineHeight": "100px"}}>
+        <MDBRow className="justify-content-center mx-3 text-center mt-2">
+          <h1 id="name" className="text-black font-weight-bolder">
             {recipe.name}
           </h1>
           { !recipe.public &&
