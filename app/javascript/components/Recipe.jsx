@@ -172,7 +172,3 @@ export default function Recipe(props) {
     </div>
   );
 }
-
-// <Link to="/recipes" role="button" className="btn btn-link">
-//  Back to recipes
-// </Link>

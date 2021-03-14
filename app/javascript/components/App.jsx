@@ -24,20 +24,19 @@ export default function App(props) {
   }, [])
 
   const loginStatus = () => {
-    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
-    .then(response => {
-      if (response.data.logged_in) {
-        handleLogin(response)
-      } else {
-        handleLogout()
-      }
-    })
-    .catch(error => console.log('api errors:', error))
+    axios.get('http://localhost:3001/api/v1/users/logged_in')
+      .then(response => {
+        if (response.data.logged_in == true) {
+          handleLogin(response.data);
+        } else {
+          handleLogout();
+        }
+      })
   }
 
-  const handleLogin = (data) => {
+  const handleLogin = (response) => {
     setIsLoggedIn(true);
-    setUser(data.user)
+    setUser(response.user)
   }
 
   const handleLogout = () => {

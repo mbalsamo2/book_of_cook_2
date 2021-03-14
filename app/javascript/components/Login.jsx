@@ -31,7 +31,6 @@ class Login extends Component {
       email: email,
       password: password
     }
-
     axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {

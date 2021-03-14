@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'recipes/:id/edit', to: 'recipes#edit'
       put 'recipes/:id/update', to: 'recipes#update'
       namespace :users do
+        get '/logged_in', to: 'users#is_logged_in?'
         get 'users/index'
         post 'users/create'
         get '/show/:id', to: 'users#show'
