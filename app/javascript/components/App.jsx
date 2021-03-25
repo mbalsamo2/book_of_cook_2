@@ -24,7 +24,8 @@ export default function App(props) {
   }, [])
 
   const loginStatus = () => {
-    axios.get('http://localhost:3001/api/v1/users/logged_in')
+    // http://localhost:3001/api/v1/users/logged_in
+    axios.get('https://fast-shore-58175.herokuapp.com/api/v1/users/logged_in')
       .then(response => {
         if (response.data.logged_in == true) {
           handleLogin(response.data);

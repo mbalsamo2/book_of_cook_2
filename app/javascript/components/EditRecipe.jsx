@@ -51,6 +51,7 @@ export default function EditRecipe(props) {
     const file = event.target.files[0];
     if (!file) return;
 
+    // http://localhost:3001/s3/direct_post
     const payload = await fetch(`http://localhost:3001/s3/direct_post`).then(res =>
       res.json()
     );

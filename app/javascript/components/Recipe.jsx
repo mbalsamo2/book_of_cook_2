@@ -20,7 +20,8 @@ export default function Recipe(props) {
         params: { id }
       }
     } = props;
-    const url = `/api/v1/show/${id}`;
+    // /api/v1/show/${id}
+    const url = `https://fast-shore-58175.herokuapp.com/api/v1/show/${id}`;
 
     fetch(url)
       .then(response => {

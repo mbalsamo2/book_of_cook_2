@@ -12,7 +12,8 @@ export default function NavigationBar(props) {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
-    axios.delete('http://localhost:3001/logout', {withCredentials: true})
+    // http://localhost:3001/logout
+    axios.delete('https://fast-shore-58175.herokuapp.com/logout', {withCredentials: true})
      .then(response => {
        props.handleLogout()
        window.location.replace('/')

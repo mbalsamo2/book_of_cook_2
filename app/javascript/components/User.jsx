@@ -13,7 +13,8 @@ export default function User(props) {
       }
     } = props
 
-    const url = `/api/v1/users/show/${id}`;
+    // /api/v1/users/show/${id}
+    const url = `https://fast-shore-58175.herokuapp.com/api/v1/users/show/${id}`;
 
     fetch(url)
     .then(response => {
@@ -23,7 +24,8 @@ export default function User(props) {
       throw new Error("Network response was not ok.");
     })
     .then(response => setUser(response))
-    .catch(() => props.history.push(`/api/v1/recipes/index`));
+    .catch(() => props.history.push(`https://fast-shore-58175.herokuapp.com/api/v1/recipes/index`));
+    // /api/v1/recipes/index
   }
 
   useEffect( () => {

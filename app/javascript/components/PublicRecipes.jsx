@@ -44,7 +44,8 @@ export default function PublicRecipes(props) {
   }, [filter])
 
   const fetchRecipes = (recipes) => {
-    const url = "/api/v1/recipes/public_recipes";
+    // /api/v1/recipes/public_recipes
+    const url = "https://fast-shore-58175.herokuapp.com/api/v1/recipes/public_recipes";
     fetch(url)
       .then(response => {
         if (response.ok) {
