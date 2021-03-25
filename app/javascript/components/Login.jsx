@@ -48,8 +48,7 @@ class Login extends Component {
 
   redirect = (response) => {
     let id = response.data.user.id
-    // /recipes
-    this.props.history.push(`https://fast-shore-58175.herokuapp.com/recipes`)
+    this.props.history.push(`/recipes`)
   }
 
   handleErrors = () => {
