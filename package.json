@@ -1,6 +1,7 @@
 {
   "name": "book_of_cook_2",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
     "@babel/preset-react": "^7.10.4",

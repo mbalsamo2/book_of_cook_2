@@ -44,8 +44,7 @@ export default function Recipes(props) {
   }, [filter])
 
   const fetchRecipes = (recipes) => {
-    // /api/v1/recipes/index
-    const url = "https://fast-shore-58175.herokuapp.com/api/v1/recipes/index";
+    const url = "/api/v1/recipes/index";
     fetch(url)
       .then(response => {
         if (response.ok) {

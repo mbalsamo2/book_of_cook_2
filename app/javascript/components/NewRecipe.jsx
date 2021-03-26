@@ -65,8 +65,7 @@ export default function NewRecipe(props) {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    // /api/v1/recipes/create
-    const url = "https://fast-shore-58175.herokuapp.com/api/v1/recipes/create";
+    const url = "/api/v1/recipes/create";
 
     if (name.length == 0 || ingredients.length == 0 || instruction.length == 0)
       return;

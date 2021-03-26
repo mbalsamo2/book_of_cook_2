@@ -34,8 +34,7 @@ class Signup extends Component {
       password: password,
       password_confirmation: password_confirmation
     }
-    // http://localhost:3001/api/v1/users/users/create
-    axios.post('https://fast-shore-58175.herokuapp.com/api/v1/users/users/create', {user}, {withCredentials: true})
+    axios.post('http://localhost:3001/api/v1/users/users/create', {user}, {withCredentials: true})
       .then(response => {
         if (response.data.status === 'created') {
           this.props.handleLogin(response.data)

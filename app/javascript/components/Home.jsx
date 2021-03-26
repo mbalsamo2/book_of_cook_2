@@ -12,8 +12,7 @@ import axios from 'axios'
 const Home = (props) => {
 
   const handleClick = () => {
-    // http://localhost:3001/logout
-    axios.delete('https://fast-shore-58175.herokuapp.com/logout', {withCredentials: true})
+    axios.delete('http://localhost:3001/logout', {withCredentials: true})
      .then(response => {
        props.handleLogout()
        props.history.push('/')
