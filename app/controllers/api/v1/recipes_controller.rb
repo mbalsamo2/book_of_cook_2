@@ -2,7 +2,11 @@ class Api::V1::RecipesController < ApplicationController
   attr_accessor :user
 
   def index
-    recipes = current_user.recipes.order(created_at: :desc)
+    if current_user
+      recipes = current_user.recipes.order(created_at: :desc)
+    else
+      recipes = Recipe.all.where(copy: false, public: true).order(created_at: :desc)
+    end
     render json: recipes
   end
 
