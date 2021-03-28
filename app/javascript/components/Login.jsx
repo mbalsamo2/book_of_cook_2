@@ -31,8 +31,7 @@ class Login extends Component {
       email: email,
       password: password
     }
-    // http://localhost:3001/login
-    axios.post('https://fast-shore-58175.herokuapp.com/login', {user}, {withCredentials: true})
+    axios.post( `${window.location.origin}/login`, {user}, {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {
           this.props.handleLogin(response.data)
