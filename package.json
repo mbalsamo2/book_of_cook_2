@@ -4,8 +4,7 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "build": "yarn install && yarn build",
-    "deploy": "cp -a client/build/. public/",
-    "postinstall": "npm build && npm deploy && echo 'Client built!'"
+    "deploy": "cp -a client/build/. public/"
   },
   "engines": {
     "yarn": "1.22.4",
