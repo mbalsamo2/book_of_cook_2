@@ -87,6 +87,7 @@ export default function NewRecipe(props) {
         'content-type': 'application/json',
         'accept': 'application/json'
       },
+      credentials: 'same-origin',
       body: JSON.stringify(body)
     })
       .then(response => {
