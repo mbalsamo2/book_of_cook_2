@@ -94,6 +94,8 @@ export default function NewRecipe(props) {
         if (response.ok) {
           return response.json();
         }
+        console.log(resonse.statusText)
+        console.log(response)
         throw new Error("Network response was not ok.");
       })
       .then(response => props.history.push(`/recipe/${response.id}`))
