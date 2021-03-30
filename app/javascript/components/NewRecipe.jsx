@@ -84,7 +84,6 @@ export default function NewRecipe(props) {
     fetch(url, {
       method: "POST",
       headers: {
-        'x-csrf-token': csrfToken,
         'content-type': 'application/json',
         'accept': 'application/json'
       },
@@ -95,7 +94,7 @@ export default function NewRecipe(props) {
           return response.json();
         }
         console.log(response.statusText)
-        console.log(response)
+        console.log(response.data.errors)
         throw new Error("Network response was not ok.");
       })
       .then(response => props.history.push(`/recipe/${response.id}`))
