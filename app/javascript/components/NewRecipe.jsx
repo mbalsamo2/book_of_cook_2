@@ -39,7 +39,7 @@ export default function NewRecipe(props) {
     const file = event.target.files[0];
     if (!file) return;
 
-    const payload = await fetch(`http://localhost:3001/s3/direct_post`).then(res =>
+    const payload = await fetch(`${window.location.origin}/s3/direct_post`).then(res =>
       res.json()
     );
 
@@ -78,12 +78,15 @@ export default function NewRecipe(props) {
       public: publicRecipe,
       image: recipeImage
     };
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    // const token = document.querySelector('meta[name="csrf-token"]').content;
+    const metaCsrf = document.querySelector("meta[name='csrf-token']");
+    const csrfToken = metaCsrf.getAttribute('content');
     fetch(url, {
       method: "POST",
       headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": 'application/json'
+        'x-csrf-token': csrfToken,
+        'content-type': 'application/json',
+        'accept': 'application/json'
       },
       body: JSON.stringify(body)
     })
