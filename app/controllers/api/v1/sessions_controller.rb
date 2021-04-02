@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
 
   def create
     @user = User.where('username = :query OR email = :query',
