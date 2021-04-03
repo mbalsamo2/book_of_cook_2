@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
   def login!
     puts 'I made it to the login method'
     session[:user_id] = @user.id
+
+    @user = User.where('username = :query OR email = :query',
+                        query: application_params[:username]).first
+    puts `found user in application_controller!!!!!!!!!!!!!!!!!!!`
+    if @user && @user.authenticate(application_params[:password])
+      update_params
+      session[:user_id] = @user.id
+    end
   end
 
   def logged_in?
@@ -25,6 +33,17 @@ class ApplicationController < ActionController::Base
 
   def fallback_index_html
     render :file => 'public/index.html'
+  end
+
+  private
+
+  def application_params
+    params.require(:user).permit(:username, :email, :password)
+  end
+
+  def update_params
+    application_params["username"] = @user.username unless @user.username
+    application_params["email"] = @user.email unless @user.email
   end
 
 end

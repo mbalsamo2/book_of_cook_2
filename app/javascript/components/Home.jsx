@@ -12,7 +12,7 @@ import axios from 'axios'
 const Home = (props) => {
 
   const handleClick = () => {
-    axios.delete(`${window.location.origin}/api/v1/sessions/destroy`, {withCredentials: true})
+    axios.delete(`${window.location.origin}/logout`, {withCredentials: true})
      .then(response => {
        props.handleLogout()
        props.history.push('/')

@@ -1,12 +1,13 @@
-class Api::V1::SessionsController < ApplicationController
+class SessionsController < ApplicationController
 
   def create
     @user = User.where('username = :query OR email = :query',
                         query: session_params[:username]).first
-    puts `I found a user: #{@user}`
 
     if @user && @user.authenticate(session_params[:password])
+      update_params
       login!
+      session[:user_id] = @user.id
       render json: {
         logged_in: true,
         user: @user
@@ -42,8 +43,14 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   private
-    def session_params
-      params.require(:user).permit(:username, :email, :password)
-    end
+
+  def session_params
+    params.require(:user).permit(:username, :email, :password)
+  end
+
+  def update_params
+    session_params["username"] = @user.username unless @user.username
+    session_params["email"] = @user.email unless @user.email
+  end
 
 end

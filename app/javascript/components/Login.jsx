@@ -31,7 +31,7 @@ class Login extends Component {
       email: email,
       password: password
     }
-    axios.post( `${window.location.origin}/api/v1/sessions/create`, {user}, {withCredentials: true})
+    axios.post( `${window.location.origin}/login`, {user}, {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {
           this.props.handleLogin(response.data)

@@ -12,7 +12,7 @@ export default function NavigationBar(props) {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
-    axios.delete(`${window.location.origin}/api/v1/sessions/destroy`, {withCredentials: true})
+    axios.delete(`${window.location.origin}/logout`, {withCredentials: true})
      .then(response => {
        props.handleLogout()
        window.location.replace('/')
