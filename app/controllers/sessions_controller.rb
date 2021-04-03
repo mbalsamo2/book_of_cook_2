@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(session_params[:password])
       update_params
-      login!
       session[:user_id] = @user.id
+
       render json: {
         logged_in: true,
-        user: @user
+        user: UserSerializer.new(@user).as_json
       }
     else
       render json: {

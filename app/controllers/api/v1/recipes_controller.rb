@@ -1,5 +1,6 @@
 class Api::V1::RecipesController < ApplicationController
   attr_accessor :user
+  before_action :current_user
 
   def index
     if current_user
@@ -58,5 +59,11 @@ class Api::V1::RecipesController < ApplicationController
 
   def recipe
     @recipe ||= Recipe.find(params[:id])
+  end
+
+  def current_user
+    if session[:user_id] || session["user_id"]
+      @current_user ||= User.find(session[:user_id])
+    end
   end
 end
