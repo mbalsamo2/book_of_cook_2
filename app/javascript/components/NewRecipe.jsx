@@ -78,12 +78,11 @@ export default function NewRecipe(props) {
       public: publicRecipe,
       image: recipeImage
     };
-    // const token = document.querySelector('meta[name="csrf-token"]').content;
-    const metaCsrf = document.querySelector("meta[name='csrf-token']");
-    const csrfToken = metaCsrf.getAttribute('content');
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
       method: "POST",
       headers: {
+        'X-CSRF-Token': token,
         'content-type': 'application/json',
         'accept': 'application/json'
       },

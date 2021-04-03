@@ -1,8 +1,10 @@
 class Api::V1::SessionsController < ApplicationController
 
   def create
+    binding.pry
     @user = User.where('username = :query OR email = :query',
                         query: session_params[:username]).first
+    puts `I found a user: #{@user}`
 
     if @user && @user.authenticate(session_params[:password])
       login!
