@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :current_user, :update_session
 
   def create
     @user = User.where('username = :query OR email = :query',
@@ -51,6 +52,20 @@ class SessionsController < ApplicationController
   def update_params
     session_params["username"] = @user.username unless @user.username
     session_params["email"] = @user.email unless @user.email
+  end
+
+  def current_user
+    if session[:user_id] || session["user_id"]
+      @current_user ||= User.find(session[:user_id])
+    end
+  end
+
+  def update_session
+    if @current_user
+      session[:user_id] = @current_user.id
+    elsif @user
+      session[:user_id] = @user.id
+    end
   end
 
 end
