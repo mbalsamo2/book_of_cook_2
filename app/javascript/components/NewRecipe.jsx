@@ -76,7 +76,8 @@ export default function NewRecipe(props) {
       instruction: instruction.replace(/\n/g, "<br> <br>"),
       copy: false,
       public: publicRecipe,
-      image: recipeImage
+      image: recipeImage,
+      user_id: props.user.id
     };
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
