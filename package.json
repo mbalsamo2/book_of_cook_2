@@ -6,7 +6,7 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "scripts": {
-    "build": "cd client && yarn install && yarn build && cd ..",
+    "build": "yarn install && yarn build",
     "deploy": "cp -a client/build/. public/",
     "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
   },
