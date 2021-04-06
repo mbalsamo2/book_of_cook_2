@@ -1,7 +1,15 @@
 {
   "name": "book_of_cook_2",
+  "version": "1.0.0",
+  "description": "The best package you will ever find.",
+  "main": "Index.jsx",
   "private": true,
   "proxy": "http://localhost:3001",
+  "scripts": {
+    "build": "cd client && yarn install && yarn build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
+  },
   "engines": {
     "yarn": "1.22.4",
     "npm": "6.14.4",
