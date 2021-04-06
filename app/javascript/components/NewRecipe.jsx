@@ -116,7 +116,7 @@ export default function NewRecipe(props) {
             <MDBCardBody>
               <form onSubmit={onSubmit}>
                 <h2 className="font-weight-normal mb-3 justify-content-center text-center">
-                  Add a new recipe to your awesome recipe collection.
+                  Add a new recipe to your awesome recipe collection!
                 </h2>
 
                 <div className="form-group">
