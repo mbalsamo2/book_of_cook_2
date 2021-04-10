@@ -33,7 +33,7 @@ const Home = (props) => {
             id="book_blue"
             className="btn btn-rounded btn-block mb-4 mx-5 justify-content-center"
             role="button">
-            Check out the Public Cookbook!
+            Check out the Public Cookbook
           </Link>
         </MDBRow>
 
