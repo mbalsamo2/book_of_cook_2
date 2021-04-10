@@ -11,6 +11,8 @@ import axios from 'axios'
 export default function NavigationBar(props) {
   const [isOpen, setIsOpen] = useState(false)
 
+  let recipe_url = `${window.location.origin}/recipes`
+
   const handleClick = () => {
     axios.delete(`${window.location.origin}/logout`, {withCredentials: true})
      .then(response => {
@@ -34,15 +36,15 @@ export default function NavigationBar(props) {
             expand="md"
             scrolling
             fixed="top"
-            className="py-1">
-            <MDBNavbarBrand href="/recipes">
+            className="py-1 navbar navbar-expand-lg">
+            <a href={recipe_url}>
               <img
-                className="z-depth-1"
+                className="z-depth-1 navbar-brand"
                 style={{"height":"4rem"}}
                 src={logo}
                 alt={'The Book of Cook'}
               />
-            </MDBNavbarBrand>
+            </a>
 
             <MDBNavbarToggler onClick={toggleCollapse} />
             <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>

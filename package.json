@@ -1,8 +1,5 @@
 {
   "name": "book_of_cook_2",
-  "version": "1.0.0",
-  "description": "The best package you will ever find.",
-  "main": "Index.jsx",
   "private": true,
   "proxy": "http://localhost:3001",
   "engines": {
@@ -24,7 +21,6 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^16.13.1",
-    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-s3": "^1.3.1",
     "url-loader": "^3.0.0"
