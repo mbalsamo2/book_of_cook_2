@@ -65,7 +65,7 @@ class Login extends Component {
   render() {
     const {username, email, password} = this.state
     return (
-      <div className="card">
+      <div className="card py-0">
 
         <h5 id="book_blue" className="card-header text-center py-4">
           Log In
@@ -77,10 +77,9 @@ class Login extends Component {
             className="text-center"
           >
 
-            <div className="md-form">
-              <input
-                style={{width: "70%"}}
-                placeholder="email or username"
+            <div className="md-form mx-auto" style={{width: "70%"}}>
+              <MDBInput
+                label="email or username"
                 type="text"
                 name="username"
                 value={username}
@@ -89,10 +88,9 @@ class Login extends Component {
             </div>
 
 
-            <div className="md-form">
-              <input
-                style={{width: "70%"}}
-                placeholder="password"
+            <div className="md-form mx-auto" style={{width: "70%"}}>
+              <MDBInput
+                label="password"
                 type="password"
                 name="password"
                 value={password}
