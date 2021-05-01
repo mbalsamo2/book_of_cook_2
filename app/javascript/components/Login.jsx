@@ -65,34 +65,36 @@ class Login extends Component {
   render() {
     const {username, email, password} = this.state
     return (
-      <div className="card py-0 px-0">
+      <MDBCard className="justify-content-center px-0">
 
         <h5 id="book_blue" className="card-header text-center py-4">
           Log In
         </h5>
 
-        <div className="card-body pt-2">
+        <MDBCardBody>
           <form
             onSubmit={this.handleSubmit}
             className="text-center"
           >
 
-            <div className="md-form mx-auto py-1 input-group" style={{width: "70%"}}>
+            <div className="md-form mx-auto py-1 form-group" style={{width: "70%"}}>
               <input
                 id="login_input"
                 placeholder="email or username"
                 type="text"
                 name="username"
+                className="form-control"
                 value={username}
                 onChange={this.handleChange}
               />
             </div>
 
 
-            <div className="md-form mx-auto pt-1 input-group" style={{width: "70%"}}>
+            <div className="md-form mx-auto pt-1 form-group" style={{width: "70%"}}>
               <input
                 id="login_input"
                 placeholder="password"
+                className="form-control"
                 type="password"
                 name="password"
                 value={password}
@@ -118,15 +120,76 @@ class Login extends Component {
             </Link>
 
           </form>
-        </div>
+        </MDBCardBody>
 
         <div>
           { this.state.errors ? this.handleErrors() : null }
         </div>
 
-      </div>
+      </MDBCard>
     );
   }
 }
 
 export default Login;
+
+// <div className="card py-0 px-0">
+//
+//   <h5 id="book_blue" className="card-header text-center py-4">
+//     Log In
+//   </h5>
+//
+//   <div className="card-body pt-2">
+//     <form
+//       onSubmit={this.handleSubmit}
+//       className="text-center"
+//     >
+//
+//       <div className="md-form mx-auto py-1 input-group" style={{width: "70%"}}>
+//         <input
+//           id="login_input"
+//           placeholder="email or username"
+//           type="text"
+//           name="username"
+//           value={username}
+//           onChange={this.handleChange}
+//         />
+//       </div>
+//
+//
+//       <div className="md-form mx-auto pt-1 input-group" style={{width: "70%"}}>
+//         <input
+//           id="login_input"
+//           placeholder="password"
+//           type="password"
+//           name="password"
+//           value={password}
+//           onChange={this.handleChange}
+//         />
+//       </div>
+//
+//       <button
+//         className="btn btn-rounded btn-block mt-4"
+//         placeholder="submit"
+//         id="homepage_buttons"
+//         type="submit"
+//         role="button">
+//         Log In
+//       </button>
+//
+//       <Link
+//         to='/signup'
+//         id="homepage_buttons"
+//         className="btn btn-rounded btn-block my-4"
+//         role="button">
+//         Create an Account
+//       </Link>
+//
+//     </form>
+//   </div>
+//
+//   <div>
+//     { this.state.errors ? this.handleErrors() : null }
+//   </div>
+//
+// </div>
