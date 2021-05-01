@@ -127,7 +127,7 @@ export default function Recipe(props) {
           }
         </MDBRow>
 
-        <div id="recipe_parent_div" className="rounded z-depth-1 ml-5 mr-5 mt-2">
+        <div id="recipe_parent_div" className="rounded shadow bg-white rounded ml-5 mr-5 mt-2">
           <MDBRow className="justify-content-md-center">
             <div className="col-12">
               <ul className="list-group">
@@ -150,15 +150,15 @@ export default function Recipe(props) {
         <MDBRow className="justify-content-center my-3 mx-2">
           {
             (recipe.user_id === props.user.id) &&
-            <MDBBtnGroup>
-              <button type="button" className="btn btn-danger mx-2" onClick={deleteRecipe}>
+            <div className="text-center">
+              <button type="button" className="btn btn-danger mx-5" onClick={deleteRecipe} style={{width: "30%"}}>
                 Delete Recipe
               </button>
 
-              <Link to={editInfo} className="btn btn-warning mx-2">
+              <Link to={editInfo} className="btn btn-warning mx-5" style={{width: "30%"}}>
                 Edit Recipe
               </Link>
-            </MDBBtnGroup>
+            </div>
           }
           {
             props.user.id && (recipe.user_id !== props.user.id) &&

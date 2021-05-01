@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 import '../../assets/stylesheets/application.css'
 import axios from 'axios'
 import logo from '../../assets/images/book_of_cook.jpg';
@@ -83,57 +83,61 @@ class Signup extends Component {
           </MDBRow>
 
           <MDBRow id="login_form" className="justify-content-md-center mx-3 px-3">
-            <div className="card mx-0 px-0">
+            <MDBCard className="justify-content-center px-0">
 
               <h5 id="book_blue" className="card-header text-center py-4 px-5 mx-0">
                 Sign Up
               </h5>
 
-              <div className="card-body pt-2">
+              <MDBCardBody>
                 <form
                   onSubmit={this.handleSubmit}
                   className="text-center"
                   style={{color: "#757575"}}>
 
-                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 form-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="username"
                       type="text"
                       name="username"
+                      className="form-control"
                       value={username}
                       onChange={this.handleChange}
                     />
                   </div>
 
-                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 form-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="email"
                       type="text"
                       name="email"
+                      className="form-control"
                       value={email}
                       onChange={this.handleChange}
                     />
                   </div>
 
-                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 form-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="password"
                       type="password"
                       name="password"
+                      className="form-control"
                       value={password}
                       onChange={this.handleChange}
                     />
                   </div>
 
-                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 form-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="password confirmation"
                       type="password"
                       name="password_confirmation"
+                      className="form-control"
                       value={password_confirmation}
                       onChange={this.handleChange}
                     />
@@ -155,9 +159,9 @@ class Signup extends Component {
                   <Link to='/'>Log in!</Link>
                 </h5>
 
-              </div>
+              </MDBCardBody>
 
-            </div>
+            </MDBCard>
 
             <div>
               { this.state.errors ? this.handleErrors() : null }

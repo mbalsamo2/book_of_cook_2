@@ -152,7 +152,7 @@ export default function PublicRecipes(props) {
               </div>
             </MDBCol>
 
-            <MDBCol md="6" style={{marginTop: "1.25em"}}>
+            <MDBCol md="6">
               <div>
                <select
                 className="browser-default custom-select"
