@@ -37,12 +37,16 @@ export default function NavigationBar(props) {
             scrolling
             fixed="top"
             className="py-1 navbar navbar-expand-lg">
-            <img
-              className="navbar-brand"
-              style={{"height":"4rem"}}
-              src={logo}
-              alt={'The Book of Cook'}
-            />
+            <Link
+              to='/recipes'
+              role="button">
+              <img
+                className="navbar-brand"
+                style={{"height":"4rem"}}
+                src={logo}
+                alt={'The Book of Cook'}
+              />
+            </Link>
 
             <button type="button" className="navbar-toggler" onClick={toggleCollapse}>
               <span className="fas fa-bars fa-1x"></span>
