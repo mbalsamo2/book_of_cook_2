@@ -45,7 +45,7 @@ export default function NavigationBar(props) {
             />
 
             <button type="button" className="navbar-toggler" onClick={toggleCollapse}>
-              <span className="navbar-toggler-icon"></span>
+              <span className="fas fa-bars fa-1x"></span>
             </button>
             <MDBCollapse id="mo" className="collapse" id="navbarCollapse3" isOpen={isOpen} navbar>
               <MDBNavbarNav left>
