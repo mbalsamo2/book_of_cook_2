@@ -82,7 +82,7 @@ class Signup extends Component {
             </Link>
           </MDBRow>
 
-          <MDBRow id="login_form" className="justify-content-md-center mx-0 px-0">
+          <MDBRow id="login_form" className="justify-content-md-center mx-3 px-3">
             <div className="card mx-0 px-0">
 
               <h5 id="book_blue" className="card-header text-center py-4 px-5 mx-0">
