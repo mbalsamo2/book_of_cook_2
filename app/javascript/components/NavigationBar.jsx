@@ -44,7 +44,9 @@ export default function NavigationBar(props) {
               alt={'The Book of Cook'}
             />
 
-            <MDBNavbarToggler className="navbar-toggler toggler-example" onClick={toggleCollapse} />
+            <button type="button" className="navbar-toggler" onClick={toggleCollapse}>
+              <span className="navbar-toggler-icon"></span>
+            </button>
             <MDBCollapse id="mo" className="collapse" id="navbarCollapse3" isOpen={isOpen} navbar>
               <MDBNavbarNav left>
                 { props.loggedInStatus &&
