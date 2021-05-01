@@ -147,15 +147,15 @@ export default function Recipe(props) {
           </MDBRow>
         </div>
 
-        <MDBRow className="justify-content-center my-5 mx-2 py-2">
+        <MDBRow className="justify-content-center my-4 mx-2 py-2">
           {
             (recipe.user_id === props.user.id) &&
             <div className="text-center">
-              <button type="button" className="btn btn-danger mx-5" onClick={deleteRecipe} style={{width: "15em"}}>
+              <button type="button" className="btn btn-danger mx-5 my-2" onClick={deleteRecipe} style={{width: "15em"}}>
                 Delete Recipe
               </button>
 
-              <Link to={editInfo} className="btn btn-warning mx-5" style={{width: "15em"}}>
+              <Link to={editInfo} className="btn btn-warning mx-5 my-2" style={{width: "15em"}}>
                 Edit Recipe
               </Link>
             </div>

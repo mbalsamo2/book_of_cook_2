@@ -38,14 +38,14 @@ export default function NavigationBar(props) {
             fixed="top"
             className="py-1 navbar navbar-expand-lg">
             <img
-              className="shadow navbar-brand"
+              className="navbar-brand"
               style={{"height":"4rem"}}
               src={logo}
               alt={'The Book of Cook'}
             />
 
-            <MDBNavbarToggler onClick={toggleCollapse} />
-            <MDBCollapse className="collapse" id="navbarCollapse3" isOpen={isOpen} navbar>
+            <MDBNavbarToggler className="navbar-toggler toggler-example" onClick={toggleCollapse} />
+            <MDBCollapse id="mo" className="collapse" id="navbarCollapse3" isOpen={isOpen} navbar>
               <MDBNavbarNav left>
                 { props.loggedInStatus &&
                   (Object.keys(props.user).length !== 0) &&
