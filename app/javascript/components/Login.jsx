@@ -71,14 +71,17 @@ class Login extends Component {
           Log In
         </h5>
 
-        <div className="card-body pt-0">
+        <div className="card-body pt-2">
           <form
             onSubmit={this.handleSubmit}
             className="text-center"
           >
 
-            <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
-              <MDBInput
+            <div
+              className="md-form mx-auto pt-1"
+              style={{width: "70%"}}>
+              <input
+                id="login_input"
                 placeholder="email or username"
                 type="text"
                 name="username"
@@ -89,7 +92,8 @@ class Login extends Component {
 
 
             <div className="md-form mx-auto" style={{width: "70%"}}>
-              <MDBInput
+              <input
+                id="login_input"
                 placeholder="password"
                 type="password"
                 name="password"

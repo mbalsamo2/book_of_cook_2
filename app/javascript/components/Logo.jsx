@@ -11,6 +11,7 @@ const Logo = (props) => {
       <MDBRow className="justify-content-md-center mt-3">
         <img
           className="img-fluid z-depth-1"
+          style={{borderRadius: "20px"}}
           src={logo}
           alt={'The Book of Cook'}
         />

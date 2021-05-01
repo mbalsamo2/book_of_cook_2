@@ -89,15 +89,15 @@ class Signup extends Component {
                 Sign Up
               </h5>
 
-              <div className="card-body pt-0">
+              <div className="card-body pt-2">
                 <form
                   onSubmit={this.handleSubmit}
                   className="text-center"
                   style={{color: "#757575"}}>
 
-                  <div className="md-form">
+                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
                     <input
-                      style={{width: "70%"}}
+                      id="login_input"
                       placeholder="username"
                       type="text"
                       name="username"
@@ -106,9 +106,9 @@ class Signup extends Component {
                     />
                   </div>
 
-                  <div className="md-form">
+                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
                     <input
-                      style={{width: "70%"}}
+                      id="login_input"
                       placeholder="email"
                       type="text"
                       name="email"
@@ -117,9 +117,9 @@ class Signup extends Component {
                     />
                   </div>
 
-                  <div className="md-form">
+                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
                     <input
-                      style={{width: "70%"}}
+                      id="login_input"
                       placeholder="password"
                       type="password"
                       name="password"
@@ -128,9 +128,9 @@ class Signup extends Component {
                     />
                   </div>
 
-                  <div className="md-form">
+                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
                     <input
-                      style={{width: "70%"}}
+                      id="login_input"
                       placeholder="password confirmation"
                       type="password"
                       name="password_confirmation"
