@@ -82,10 +82,10 @@ class Signup extends Component {
             </Link>
           </MDBRow>
 
-          <MDBRow id="login_form" className="justify-content-md-center mx-4 px-4">
-            <div className="card">
+          <MDBRow id="login_form" className="justify-content-md-center mx-0 px-0">
+            <div className="card mx-0 px-0">
 
-              <h5 id="book_blue" className="card-header text-center py-4">
+              <h5 id="book_blue" className="card-header text-center py-4 px-5 mx-0">
                 Sign Up
               </h5>
 
@@ -95,7 +95,7 @@ class Signup extends Component {
                   className="text-center"
                   style={{color: "#757575"}}>
 
-                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="username"
@@ -106,7 +106,7 @@ class Signup extends Component {
                     />
                   </div>
 
-                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="email"
@@ -117,7 +117,7 @@ class Signup extends Component {
                     />
                   </div>
 
-                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="password"
@@ -128,7 +128,7 @@ class Signup extends Component {
                     />
                   </div>
 
-                  <div className="md-form mx-auto pt-1" style={{width: "70%"}}>
+                  <div className="md-form mx-auto pt-2 input-group" style={{width: "70%"}}>
                     <input
                       id="login_input"
                       placeholder="password confirmation"

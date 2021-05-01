@@ -77,9 +77,7 @@ class Login extends Component {
             className="text-center"
           >
 
-            <div
-              className="md-form mx-auto pt-1"
-              style={{width: "70%"}}>
+            <div className="md-form mx-auto py-1 input-group" style={{width: "70%"}}>
               <input
                 id="login_input"
                 placeholder="email or username"
@@ -91,7 +89,7 @@ class Login extends Component {
             </div>
 
 
-            <div className="md-form mx-auto" style={{width: "70%"}}>
+            <div className="md-form mx-auto pt-1 input-group" style={{width: "70%"}}>
               <input
                 id="login_input"
                 placeholder="password"
