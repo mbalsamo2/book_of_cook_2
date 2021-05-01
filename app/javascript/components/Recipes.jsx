@@ -129,7 +129,7 @@ return (
           <main className="container">
 
             <MDBRow className="mb-4">
-              <MDBCol md="6">
+              <MDBCol md="6" className="my-2">
                 <div className="input-group md-form form-sm form-1 pl-0">
                   <div className="input-group-prepend">
                     <span className="input-group-text" id="book_blue">
@@ -147,7 +147,7 @@ return (
                 </div>
               </MDBCol>
 
-              <MDBCol md="6">
+              <MDBCol md="6" className="my-2">
                 <div>
                  <select
                   className="browser-default custom-select"

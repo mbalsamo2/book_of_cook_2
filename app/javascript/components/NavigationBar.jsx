@@ -45,7 +45,7 @@ export default function NavigationBar(props) {
             />
 
             <MDBNavbarToggler onClick={toggleCollapse} />
-            <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
+            <MDBCollapse className="collapse" id="navbarCollapse3" isOpen={isOpen} navbar>
               <MDBNavbarNav left>
                 { props.loggedInStatus &&
                   (Object.keys(props.user).length !== 0) &&
