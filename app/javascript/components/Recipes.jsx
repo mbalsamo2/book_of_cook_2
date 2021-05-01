@@ -61,12 +61,12 @@ export default function Recipes(props) {
 
   const allRecipes = recipes.map((recipe, index) => (
     <div key={index} className="col-md-6 col-lg-4">
-      <div id="parent_card" className="card my-4 p-3 rounded z-depth-1">
+      <div id="parent_card" className="card my-4 p-3 rounded shadow-lg">
 
         <img
           id="recipe_card_image"
           src={recipe.image ? recipe.image : defaultImage}
-          className="card-img-top rounded z-depth-1"
+          className="card-img-top rounded shadow-lg"
           alt={`${recipe.name} image`}
         />
 

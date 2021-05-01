@@ -37,14 +37,12 @@ export default function NavigationBar(props) {
             scrolling
             fixed="top"
             className="py-1 navbar navbar-expand-lg">
-            <a href={recipe_url}>
-              <img
-                className="z-depth-1 navbar-brand"
-                style={{"height":"4rem"}}
-                src={logo}
-                alt={'The Book of Cook'}
-              />
-            </a>
+            <img
+              className="shadow navbar-brand"
+              style={{"height":"4rem"}}
+              src={logo}
+              alt={'The Book of Cook'}
+            />
 
             <MDBNavbarToggler onClick={toggleCollapse} />
             <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>

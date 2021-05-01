@@ -127,7 +127,7 @@ export default function Recipe(props) {
           }
         </MDBRow>
 
-        <div id="recipe_parent_div" className="rounded shadow bg-white rounded ml-5 mr-5 mt-2">
+        <div id="recipe_parent_div" className="rounded shadow bg-white ml-5 mr-5 mt-2">
           <MDBRow className="justify-content-md-center">
             <div className="col-12">
               <ul className="list-group">
