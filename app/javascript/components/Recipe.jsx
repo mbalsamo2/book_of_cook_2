@@ -117,17 +117,20 @@ export default function Recipe(props) {
 
       <MDBContainer className="fluid">
         <MDBRow className="justify-content-center mx-3 text-center mt-2">
-          <h1 id="name" className="text-black font-weight-bolder">
-            {recipe.name}
-          </h1>
+          { recipe.public &&
+            <h1 id="name" className="text-black display-2">
+              {recipe.name}
+            </h1>
+          }
           { !recipe.public &&
-            <p id="private" className="mx-2 font-weight-bolder">
-              PRIVATE
-            </p>
+            <div>
+              <p className="display-2 mb-0">{recipe.name}</p>
+              <p id="private" className="display-6">Private Recipe</p>
+            </div>
           }
         </MDBRow>
 
-        <div id="recipe_parent_div" className="rounded shadow bg-white ml-5 mr-5 mt-2">
+        <div id="recipe_parent_div" className="rounded shadow bg-white ml-3 mr-3 mt-2">
           <MDBRow className="justify-content-md-center">
             <div className="col-12">
               <ul className="list-group">
