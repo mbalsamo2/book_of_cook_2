@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import Home from "../components/Home";
 import Recipes from "../components/Recipes";
 import Recipe from "../components/Recipe";
@@ -156,7 +156,7 @@ export default function App(props) {
               />
             )}
           />
-
+          <Redirect to="/recipes"/>
         </Switch>
       </BrowserRouter>
     </div>
